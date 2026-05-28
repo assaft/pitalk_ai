@@ -1,6 +1,6 @@
 PCB statistics report
 =====================
-- Date: Thursday, May 28, 2026 at 03:47:10 AM
+- Date: Thursday, May 28, 2026 at 04:05:12 AM
 - Project: pitalk
 - Board name: pitalk
 
@@ -16,9 +16,9 @@ Board
 - Min drill diameter: 1.0000 mm
 - Board stackup thickness: 1.6000 mm
 
-- Front footprint area: 1090.284 mm²
+- Front footprint area: 1091.121 mm²
 - Back footprint area: 287.253 mm²
-- Front component density: 30.50 %
+- Front component density: 30.52 %
 - Back component density: 8.04 %
 Pads
 ----

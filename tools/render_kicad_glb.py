@@ -42,10 +42,10 @@ empty.location = center
 camera = bpy.data.objects.new("Camera", bpy.data.cameras.new("Camera"))
 bpy.context.collection.objects.link(camera)
 bpy.context.scene.camera = camera
-camera.location = center + Vector((extent * 0.8, -extent * 1.0, extent * 0.7))
+camera.location = center + Vector((extent * 0.8, -extent * 1.0, extent * 1.0))
 camera.rotation_euler = (center - camera.location).to_track_quat("-Z", "Y").to_euler()
 camera.data.type = "ORTHO"
-camera.data.ortho_scale = extent * 1.15
+camera.data.ortho_scale = extent * 1.55
 camera.data.dof.use_dof = False
 
 sun = bpy.data.objects.new("Key Sun", bpy.data.lights.new("Key Sun", "SUN"))
