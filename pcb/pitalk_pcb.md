@@ -17,7 +17,7 @@ Includes the MAX98357 I2S amplifier on-board; all other components connect via h
 | Ref | Part | Description |
 |-----|------|-------------|
 | J1  | 2×20 shrouded male IDC header, 2.54 mm | GPIO ribbon-cable connector to RPi Zero 2W |
-| J2  | 1×15 keyed locking connector, 2.54 mm | Screen (Waveshare 2" SPI + I2C), Molex SL-style |
+| J2  | 1×15 keyed/friction-lock connector, 2.54 mm | Screen (Waveshare 2" SPI + I2C), Molex KK-254-style |
 | J3  | 2×3 male pin header, 2.54 mm | Microphone (INMP441) — use female-to-female header cable |
 | J4  | 1×2 screw terminal, 5.0 mm | Speaker output |
 | J5  | 1×4 pin header, 2.54 mm | Button (switch + LED) |

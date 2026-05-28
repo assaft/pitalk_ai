@@ -1,2 +1,4 @@
 .DS_Store
 .claude/
+*.kicad_prl
+/pitalk_statistics.rpt
