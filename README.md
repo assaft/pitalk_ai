@@ -39,12 +39,12 @@ Using the touch screen, user A can initiate a recording of a message to a partic
 * The bottom should be openable using screws, giving access to all components inside.
 * The raspberry pi should be attached on one of the sides to allow easy access to the screen, speaker, microphone and button.
 * A custom PCB board should be used to simplify connectivity and maintenance
-* The PCB should connect to the Raspberry PI using a pin header. 
+* The PCB should connect to the Raspberry PI using an IDC ribbon cable and shrouded 2×20 male headers.
 
 ## PCB Board requirements
 * The board may include the amplifier as part of it.
 * The board should not include the microphone because the microphone is attached to the front of the device.
-* there should be pin headers on the pcb for connecting it to the microphone, speaker, button and screen.
+* there should be board connectors on the pcb for connecting it to the microphone, speaker, button and screen; the screen connector should be keyed/locking.
 
 # Components
 
@@ -62,17 +62,64 @@ Using the touch screen, user A can initiate a recording of a message to a partic
 |-----------|--------|-------|-------------------|-------|
 | Raspberry Pi Zero 2W | 65 mm | 30 mm | ~5 mm | Board only; add ~2 mm for protruding micro-SD card |
 | Waveshare 2" Capacitive Touch LCD (ST7789T3 / CST816D) | 58.8 mm | 37.1 mm | ~4 mm | PCB size; active display area is 40.8 × 30.6 mm |
-| Gikfun 2" 4Ω 3W Speaker | Ø 50.8 mm | — | 30 mm | Circular; diameter = 50.8 mm (2"), depth = 30 mm |
+| Gikfun 2" 4Ω 3W Speaker | 52.6 mm | 52.6 mm | 30 mm | Square frame |
 | MAX98357 I2S Class-D Amplifier (breakout) | 19.4 mm | 17.8 mm | 3 mm | Adafruit-style breakout board |
 | INMP441 Microphone (on 20 × 20 mm perfboard) | 20 mm | 20 mm | ~11 mm | Perfboard size per design spec; sensor itself is 4.7 × 3.8 × 1 mm |
 | Momentary Push Button with LED | Ø 16–22 mm | — | ~39 mm | Circular; diameter depends on selected model (common: 16 mm or 22 mm panel cutout) |
 
-# Box Arragement
+# Box Arrangement
 
-## Front layout
+Two candidate front-face layouts. Scale: 1 char ≈ 5 mm.
 
+## Layout 1 — Portrait (80 × 155 mm)
 
-## Internal Layour
+Screen on top, speaker in the middle, mic and button at the bottom.
+
+```
+╔══════════════════╗
+║                  ║
+║  ┌────────────┐  ║
+║  │            │  ║
+║  │   SCREEN   │  ║  58.8 × 37.1 mm
+║  │            │  ║
+║  └────────────┘  ║
+║                  ║
+║   ┌──────────┐   ║
+║   │ ·  ·  ·  │   ║
+║   │  ·  ·  · │   ║  52.6 × 52.6 mm
+║   │ ·  ·  ·  │   ║
+║   │  ·  ·  · │   ║
+║   └──────────┘   ║
+║                  ║
+║   ◎         ◉   ║
+║   mic       btn  ║
+╚══════════════════╝
+     80 × 155 mm
+```
+
+USB-C on the right side.
+
+## Layout 4 — Landscape (150 × 80 mm)
+
+Speaker on the left, screen on the right, mic and button below the screen.
+
+```
+╔══════════════════════════════════════╗
+║                                      ║
+║  ┌────────────┐  ┌────────────┐      ║
+║  │ ·  ·  ·  · │  │            │      ║
+║  │  ·  ·  ·  │  │   SCREEN   │      ║  58.8 × 37.1 mm
+║  │ ·  ·  ·  · │  │            │      ║
+║  │  ·  ·  ·  │  └────────────┘      ║
+║  └────────────┘       ◎    ◉        ║
+║                      mic   btn       ║
+╚══════════════════════════════════════╝
+  52.6 × 52.6 mm          150 × 80 mm
+```
+
+USB-C on the bottom edge (side of box). Button centered below screen, mic to its left.
+
+## Internal Layout
 
 ### View from bottom
 
@@ -87,8 +134,6 @@ Using the touch screen, user A can initiate a recording of a message to a partic
 
 # Todos 
 * ~~Adding the component dimensions - width, height, depth - see section above.~~
-* Creating the box arrangment for organizing the components in a box - see section above.
-* Create a PCB board to simplify connections and maintenance - see section above.
+* ~~Creating the box arrangment for organizing the components in a box - see section above.~~
+* ~~Create a PCB board to simplify connections and maintenance - see section above.~~
 3. Writing the software for implementing the service.
-
-
