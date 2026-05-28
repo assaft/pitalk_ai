@@ -42,31 +42,36 @@ empty.location = center
 camera = bpy.data.objects.new("Camera", bpy.data.cameras.new("Camera"))
 bpy.context.collection.objects.link(camera)
 bpy.context.scene.camera = camera
-camera.location = center + Vector((extent * 0.75, -extent * 1.15, extent * 0.75))
-camera.rotation_euler = (camera.location - center).to_track_quat("-Z", "Y").to_euler()
-camera.data.lens = 55
+camera.location = center + Vector((extent * 0.8, -extent * 1.0, extent * 0.7))
+camera.rotation_euler = (center - camera.location).to_track_quat("-Z", "Y").to_euler()
+camera.data.type = "ORTHO"
+camera.data.ortho_scale = extent * 1.15
 camera.data.dof.use_dof = False
 
 sun = bpy.data.objects.new("Key Sun", bpy.data.lights.new("Key Sun", "SUN"))
 bpy.context.collection.objects.link(sun)
 sun.location = center + Vector((0, -extent, extent * 2))
 sun.rotation_euler = (math.radians(45), 0, math.radians(35))
-sun.data.energy = 2.0
+sun.data.energy = 0.8
 
 area = bpy.data.objects.new("Softbox", bpy.data.lights.new("Softbox", "AREA"))
 bpy.context.collection.objects.link(area)
 area.location = center + Vector((extent * 0.2, -extent * 0.4, extent * 1.8))
-area.data.energy = 450
+area.data.energy = 120
 area.data.size = extent
 
-bpy.context.scene.render.engine = "CYCLES"
-bpy.context.scene.cycles.samples = 96
-bpy.context.scene.view_settings.view_transform = "Filmic"
+bpy.context.scene.render.engine = "BLENDER_WORKBENCH"
+bpy.context.scene.display.shading.light = "STUDIO"
+bpy.context.scene.display.shading.color_type = "MATERIAL"
+bpy.context.scene.display.shading.show_cavity = True
+bpy.context.scene.view_settings.view_transform = "Standard"
 bpy.context.scene.view_settings.look = "Medium High Contrast"
+bpy.context.scene.view_settings.exposure = 0
+bpy.context.scene.view_settings.gamma = 1
 bpy.context.scene.render.resolution_x = 1800
 bpy.context.scene.render.resolution_y = 1300
 bpy.context.scene.render.film_transparent = False
-bpy.context.scene.world.color = (1, 1, 1)
+bpy.context.scene.world.color = (0.78, 0.78, 0.78)
 
 bpy.context.scene.render.filepath = str(OUT)
 bpy.ops.render.render(write_still=True)
