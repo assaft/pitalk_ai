@@ -8,7 +8,7 @@
     (rev "1.0")
     (company "PiTalk")
     (comment 1 "Voice messaging device for kids")
-    (comment 2 "Raspberry Pi Zero 2W + MAX98357 + INMP441")
+    (comment 2 "Raspberry Pi Zero 2W + external MAX98357 + INMP441")
   )
 
   ;; ─────────────────────────────────────────────────────
@@ -179,6 +179,33 @@
         (pin passive (at -5.08  1.27 0) (length 3.81) (name "GND"     (effects (font (size 1.27 1.27)))) (number "2" (effects (font (size 1.27 1.27)))))
         (pin passive (at -5.08 -1.27 0) (length 3.81) (name "BTN_LED" (effects (font (size 1.27 1.27)))) (number "3" (effects (font (size 1.27 1.27)))))
         (pin passive (at -5.08 -3.81 0) (length 3.81) (name "GND"     (effects (font (size 1.27 1.27)))) (number "4" (effects (font (size 1.27 1.27)))))
+      )
+    )
+
+    ;; Generic 1×7 female connector  (External amplifier)
+    (symbol "Conn_01x07"
+      (pin_names (offset 1.016) hide) (in_bom yes) (on_board yes)
+      (property "Reference" "J" (id 0) (at 0 10.16 0)
+        (effects (font (size 1.27 1.27)))
+      )
+      (property "Value" "Conn_01x07" (id 1) (at 0 -10.16 0)
+        (effects (font (size 1.27 1.27)))
+      )
+      (property "Footprint" "Connector_PinSocket_2.54mm:PinSocket_1x07_P2.54mm_Vertical" (id 2) (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (symbol "Conn_01x07_1_1"
+        (rectangle (start -1.27 9.525) (end 1.27 -9.525)
+          (stroke (width 0) (type default))
+          (fill (type pin_numbers_background))
+        )
+        (pin passive (at -5.08  7.62 0) (length 3.81) (name "VIN"     (effects (font (size 1.27 1.27)))) (number "1" (effects (font (size 1.27 1.27)))))
+        (pin passive (at -5.08  5.08 0) (length 3.81) (name "GND"     (effects (font (size 1.27 1.27)))) (number "2" (effects (font (size 1.27 1.27)))))
+        (pin passive (at -5.08  2.54 0) (length 3.81) (name "SD_MODE" (effects (font (size 1.27 1.27)))) (number "3" (effects (font (size 1.27 1.27)))))
+        (pin passive (at -5.08  0.00 0) (length 3.81) (name "GAIN"    (effects (font (size 1.27 1.27)))) (number "4" (effects (font (size 1.27 1.27)))))
+        (pin passive (at -5.08 -2.54 0) (length 3.81) (name "DIN"     (effects (font (size 1.27 1.27)))) (number "5" (effects (font (size 1.27 1.27)))))
+        (pin passive (at -5.08 -5.08 0) (length 3.81) (name "BCLK"    (effects (font (size 1.27 1.27)))) (number "6" (effects (font (size 1.27 1.27)))))
+        (pin passive (at -5.08 -7.62 0) (length 3.81) (name "LRC"     (effects (font (size 1.27 1.27)))) (number "7" (effects (font (size 1.27 1.27)))))
       )
     )
 
@@ -420,48 +447,6 @@
     )
   )
 
-  ;; U1 — MAX98357A amplifier
-  (symbol (lib_id "MAX98357A") (at 140 75 0) (unit 1)
-    (in_bom yes) (on_board yes)
-    (property "Reference" "U1" (id 0) (at 140 60 0)
-      (effects (font (size 1.27 1.27)))
-    )
-    (property "Value" "MAX98357A" (id 1) (at 140 90 0)
-      (effects (font (size 1.27 1.27)))
-    )
-    (property "Footprint" "Package_TO_SOT_SMD:WLCSP-9_1.595x1.605mm_Layout3x3_P0.5mm" (id 2) (at 140 75 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-  )
-
-  ;; C1 — 100nF bypass cap
-  (symbol (lib_id "C") (at 165 68 90) (unit 1)
-    (in_bom yes) (on_board yes)
-    (property "Reference" "C1" (id 0) (at 167 68 90)
-      (effects (font (size 1.27 1.27)))
-    )
-    (property "Value" "100nF" (id 1) (at 163 68 90)
-      (effects (font (size 1.27 1.27)))
-    )
-    (property "Footprint" "Capacitor_SMD:C_0402_1005Metric" (id 2) (at 165 68 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-  )
-
-  ;; C2 — 10µF bulk decoupling
-  (symbol (lib_id "C") (at 170 68 90) (unit 1)
-    (in_bom yes) (on_board yes)
-    (property "Reference" "C2" (id 0) (at 172 68 90)
-      (effects (font (size 1.27 1.27)))
-    )
-    (property "Value" "10uF" (id 1) (at 168 68 90)
-      (effects (font (size 1.27 1.27)))
-    )
-    (property "Footprint" "Capacitor_SMD:C_0402_1005Metric" (id 2) (at 170 68 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-  )
-
   ;; R1 — 330Ω LED current limit
   (symbol (lib_id "R") (at 120 130 0) (unit 1)
     (in_bom yes) (on_board yes)
@@ -504,16 +489,16 @@
     )
   )
 
-  ;; J4 — Speaker terminal (1×2)
-  (symbol (lib_id "Conn_01x02") (at 200 120 0) (unit 1)
+  ;; J4 — External MAX98357 amplifier connector (1×7 female)
+  (symbol (lib_id "Conn_01x07") (at 200 120 0) (unit 1)
     (in_bom yes) (on_board yes)
     (property "Reference" "J4" (id 0) (at 200 115 0)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Value" "Speaker_4R_3W" (id 1) (at 200 126 0)
+    (property "Value" "External_MAX98357A_Amp" (id 1) (at 200 132 0)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Footprint" "Connector_Phoenix_MKDS:PhoenixContact_MKDS_1,5_2-5.00mm_1x02_P5.00mm_Horizontal" (id 2) (at 200 120 0)
+    (property "Footprint" "Connector_PinSocket_2.54mm:PinSocket_1x07_P2.54mm_Vertical" (id 2) (at 200 120 0)
       (effects (font (size 1.27 1.27)) hide)
     )
   )
@@ -536,21 +521,13 @@
   ;;  Selected wires
   ;; ─────────────────────────────────────────────────────
 
-  ;; +3.3V: J1.1 → U1.VDD, J2.2, J3.1 (via global +3V3 labels)
+  ;; +3.3V: J1.1 → J2, J3, J4 SD_MODE
   (wire (pts (xy 40 29.2) (xy 80 29.2))) ;; J1 pin1 → right
-  (wire (pts (xy 127.38 64.92) (xy 165 64.92))) ;; U1 VDD → C1
-  (wire (pts (xy 127.38 67.46) (xy 165 67.46))) ;; U1 GND → C2
 
-  ;; I2S to MAX98357
-  (wire (pts (xy 40 59.68) (xy 127.38 69.85)))  ;; J1.12 BCLK → U1.BCLK (approximate)
-  (wire (pts (xy 40 9.4 ) (xy 127.38 74.93)))   ;; J1.35 LRCLK → U1.LRCLK
-  (wire (pts (xy 40 -0.76) (xy 127.38 80.01)))  ;; J1.40 DOUT → U1.DIN
-
-  ;; Speaker output
-  (wire (pts (xy 152.38 69.85) (xy 165 69.85))) ;; U1.OUT+ → short wire
-  (wire (pts (xy 165 69.85) (xy 195 119.97)))   ;; → J4.OUT+
-  (wire (pts (xy 152.38 67.31) (xy 165 67.31))) ;; U1.OUT-
-  (wire (pts (xy 165 67.31) (xy 195 122.51)))   ;; → J4.OUT-
+  ;; I2S to external MAX98357 amp connector
+  (wire (pts (xy 40 59.68) (xy 195 125.08)))  ;; J1.12 BCLK → J4.BCLK
+  (wire (pts (xy 40 9.4 ) (xy 195 127.62)))   ;; J1.35 LRCLK → J4.LRC
+  (wire (pts (xy 40 -0.76) (xy 195 122.54)))  ;; J1.40 DOUT → J4.DIN
 
   ;; BTN_LED: J1.13 → R1 → J5.3
   (wire (pts (xy 40 64.77) (xy 115 130)))   ;; J1 GPIO27 → R1

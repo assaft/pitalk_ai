@@ -1,318 +1,581 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 720" width="860" height="720">
-<defs>
-  <style>
-    .bg        { fill:#111318; }
-    .pcb       { fill:#1a5e1a; }
-    .pcb-edge  { fill:none; stroke:#c8a000; stroke-width:2.5; }
-    .mhole     { fill:#0a2e0a; stroke:#d4a017; stroke-width:1.8; }
-    .mhole-i   { fill:#111318; }
-    .comp-body { fill:#252510; stroke:#d0d0a0; stroke-width:1.2; }
-    .pad-ring  { fill:#d4a017; }
-    .pad-drill { fill:#1a5e1a; }
-    .pad-big-d { fill:#0d0d0d; }
-    .trace-b   { fill:none; stroke:#c8900a; stroke-width:1.8; stroke-opacity:0.75; }
-    .via       { fill:#d4a017; stroke:#111318; stroke-width:1; }
-    .via-d     { fill:#111318; }
-    .silk      { fill:#e8e8e8; font-family:'Courier New',monospace; }
-    .silk-sm   { font-size:10px; }
-    .silk-md   { font-size:12px; }
-    .silk-lg   { font-size:14px; font-weight:bold; }
-    .net-lbl   { fill:#60e060; font-family:'Courier New',monospace; font-size:9px; }
-    .pwr-lbl   { fill:#e06060; font-family:'Courier New',monospace; font-size:9px; }
-    .gnd-lbl   { fill:#6080e0; font-family:'Courier New',monospace; font-size:9px; }
-    .title-t   { fill:#ffffff; font-family:Arial,sans-serif; }
-    .legend-t  { fill:#c8c8c8; font-family:'Courier New',monospace; font-size:10px; }
-    .dim-line  { stroke:#606090; stroke-width:1; stroke-dasharray:4 3; fill:none; }
-    .dim-text  { fill:#8090c0; font-family:Arial,sans-serif; font-size:10px; }
-    .gnd-pour  { fill:#8B6914; fill-opacity:0.32; }
-    .note-t    { fill:#909090; font-family:'Courier New',monospace; font-size:9px; font-style:italic; }
-    .fp-ghost  { fill:none; stroke:#505030; stroke-width:1; stroke-dasharray:3 3; }
-  </style>
-</defs>
-
-<!-- ═══════════════════════════════════════════════════ -->
-<!-- Background & title                                  -->
-<!-- ═══════════════════════════════════════════════════ -->
-<rect width="860" height="720" class="bg"/>
-
-<text x="430" y="32" text-anchor="middle" class="title-t" font-size="20" font-weight="bold">PiTalk — Custom PCB  (Bottom View)</text>
-<text x="430" y="54" text-anchor="middle" class="title-t" font-size="12">65 × 55 mm · 2-layer FR4 · Rev 1.0  ·  mirrored L↔R  (pin-1 = top-right)</text>
-
-<!-- ═══════════════════════════════════════════════════ -->
-<!-- PCB board  65×55mm  origin (95,70)  9px/mm          -->
-<!-- Mirror axis x = 387.5  →  x_mirrored = 775 – x     -->
-<!-- ═══════════════════════════════════════════════════ -->
-<rect x="95" y="70" width="585" height="495" rx="8" class="pcb"/>
-<rect x="95" y="70" width="585" height="495" rx="8" class="pcb-edge"/>
-
-<!-- Dimension arrows -->
-<line x1="95"  y1="58" x2="680" y2="58"  class="dim-line"/>
-<text x="387" y="56" text-anchor="middle" class="dim-text">65 mm</text>
-<line x1="83"  y1="70" x2="83"  y2="565" class="dim-line"/>
-<text x="78" y="320" text-anchor="middle" class="dim-text" transform="rotate(-90,78,320)">55 mm</text>
-
-<!-- Mounting holes (symmetric, appear in same corners) -->
-<circle cx="122" cy="97"  r="14" class="mhole"/><circle cx="122" cy="97"  r="7" class="mhole-i"/>
-<circle cx="653" cy="97"  r="14" class="mhole"/><circle cx="653" cy="97"  r="7" class="mhole-i"/>
-<circle cx="122" cy="538" r="14" class="mhole"/><circle cx="122" cy="538" r="7" class="mhole-i"/>
-<circle cx="653" cy="538" r="14" class="mhole"/><circle cx="653" cy="538" r="7" class="mhole-i"/>
-
-<!-- ═══════════════════════════════════════════════════ -->
-<!-- Bottom copper layer — GND pour  (B.Cu)             -->
-<!-- Solid copper fill; cleared around THT pads below   -->
-<!-- ═══════════════════════════════════════════════════ -->
-<rect x="95" y="70" width="585" height="495" rx="8" class="gnd-pour"/>
-
-<!-- ═══════════════════════════════════════════════════ -->
-<!-- SMD component ghost outlines (on top layer — not   -->
-<!-- populated on bottom, shown for orientation only)   -->
-<!-- ═══════════════════════════════════════════════════ -->
-<!-- U1 footprint ghost: top-view x=347..473, y=221..365 → mirrored x=302..428 -->
-<rect x="302" y="221" width="126" height="144" rx="5" class="fp-ghost"/>
-<text x="365" y="270" text-anchor="middle" class="note-t">U1</text>
-<text x="365" y="283" text-anchor="middle" class="note-t">MAX98357A</text>
-<text x="365" y="296" text-anchor="middle" class="note-t">(top side)</text>
-
-<!-- C1 ghost: top x=308..330 → mirrored x=445..467 -->
-<rect x="445" y="260" width="22" height="10" rx="1" class="fp-ghost"/>
-<text x="456" y="257" class="note-t">C1</text>
-
-<!-- C2 ghost: top x=308..330, y=308..318 → mirrored same x range -->
-<rect x="445" y="308" width="22" height="10" rx="1" class="fp-ghost"/>
-<text x="456" y="305" class="note-t">C2</text>
-
-<!-- R1 ghost: top x=222..244, y=362..372 → mirrored x=509..531 -->
-<rect x="509" y="362" width="22" height="10" rx="1" class="fp-ghost"/>
-<text x="520" y="359" class="note-t">R1</text>
-
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!-- J2  Screen keyed locking connector  1×15  — mirrored right -->
-<!-- Original top: x=140 w=343 → mirrored: x=292  (775-140-343) -->
-<!-- Pad centers top: 154.5,177.5,...,476.5 → mirrored: 620.5,597.5,...,298.5 -->
-<!-- Left→right in bottom view: pin15..pin1                     -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<rect x="292" y="97" width="343" height="45" rx="3" class="comp-body"/>
-<text x="463" y="112" text-anchor="middle" class="silk silk-md">J2 · Screen Locking 1×15</text>
-
-<!-- 15 annular pads, y_center=124.5, mirrored x-centers: -->
-<!-- pin15=298.5  pin14=321.5  pin13=344.5  pin12=367.5  pin11=390.5 -->
-<!-- pin10=413.5  pin9=436.5   pin8=459.5   pin7=482.5   pin6=505.5  -->
-<!-- pin5=528.5   pin4=551.5   pin3=574.5   pin2=597.5   pin1=620.5  -->
-<circle cx="298.5" cy="124.5" r="8" class="pad-ring"/><circle cx="298.5" cy="124.5" r="4" class="pad-drill"/>
-<circle cx="321.5" cy="124.5" r="8" class="pad-ring"/><circle cx="321.5" cy="124.5" r="4" class="pad-drill"/>
-<circle cx="344.5" cy="124.5" r="8" class="pad-ring"/><circle cx="344.5" cy="124.5" r="4" class="pad-drill"/>
-<circle cx="367.5" cy="124.5" r="8" class="pad-ring"/><circle cx="367.5" cy="124.5" r="4" class="pad-drill"/>
-<circle cx="390.5" cy="124.5" r="8" class="pad-ring"/><circle cx="390.5" cy="124.5" r="4" class="pad-drill"/>
-<circle cx="413.5" cy="124.5" r="8" class="pad-ring"/><circle cx="413.5" cy="124.5" r="4" class="pad-drill"/>
-<circle cx="436.5" cy="124.5" r="8" class="pad-ring"/><circle cx="436.5" cy="124.5" r="4" class="pad-drill"/>
-<circle cx="459.5" cy="124.5" r="8" class="pad-ring"/><circle cx="459.5" cy="124.5" r="4" class="pad-drill"/>
-<circle cx="482.5" cy="124.5" r="8" class="pad-ring"/><circle cx="482.5" cy="124.5" r="4" class="pad-drill"/>
-<circle cx="505.5" cy="124.5" r="8" class="pad-ring"/><circle cx="505.5" cy="124.5" r="4" class="pad-drill"/>
-<circle cx="528.5" cy="124.5" r="8" class="pad-ring"/><circle cx="528.5" cy="124.5" r="4" class="pad-drill"/>
-<circle cx="551.5" cy="124.5" r="8" class="pad-ring"/><circle cx="551.5" cy="124.5" r="4" class="pad-drill"/>
-<circle cx="574.5" cy="124.5" r="8" class="pad-ring"/><circle cx="574.5" cy="124.5" r="4" class="pad-drill"/>
-<circle cx="597.5" cy="124.5" r="8" class="pad-ring"/><circle cx="597.5" cy="124.5" r="4" class="pad-drill"/>
-<circle cx="620.5" cy="124.5" r="8" class="pad-ring"/><circle cx="620.5" cy="124.5" r="4" class="pad-drill"/>
-<!-- pin-1 marker (square pad, rightmost) -->
-<rect x="614" y="118" width="13" height="13" rx="0" class="pad-ring" fill="none" stroke="#e0e0e0" stroke-width="1.5"/>
-<!-- pin labels: from left (pin15) to right (pin1) -->
-<text x="292" y="148" class="gnd-lbl">GND</text>
-<text x="315" y="148" class="gnd-lbl">GND</text>
-<text x="338" y="148" class="net-lbl">BL</text>
-<text x="360" y="148" class="net-lbl">INT</text>
-<text x="383" y="148" class="net-lbl">SCL</text>
-<text x="406" y="148" class="net-lbl">SDA</text>
-<text x="429" y="148" class="net-lbl">RST</text>
-<text x="452" y="148" class="net-lbl">DC</text>
-<text x="475" y="148" class="net-lbl">CS</text>
-<text x="497" y="148" class="net-lbl">SCK</text>
-<text x="520" y="148" class="net-lbl">MOSI</text>
-<text x="545" y="148" class="pwr-lbl">3V3</text>
-<text x="568" y="148" class="gnd-lbl">GND</text>
-<text x="591" y="148" class="pwr-lbl">3V3</text>
-<text x="614" y="148" class="gnd-lbl">GND</text>
-
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!-- J3  Mic male pin header  2×3  — mirrored to left side      -->
-<!-- Original top: x=516 w=84 → mirrored: x=175  (775-516-84)  -->
-<!-- Col centers top: 530.5,553.5,576.5 → mirrored: 244.5,221.5,198.5 -->
-<!-- Row A y=113.5  Row B y=136.5                               -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<rect x="175" y="88" width="84" height="62" rx="3" class="comp-body"/>
-<text x="217" y="102" text-anchor="middle" class="silk silk-sm">J3 · Mic Male 2×3</text>
-<!-- Row A (power) mirrored cols: x=198.5,221.5,244.5  y=113.5 -->
-<circle cx="198.5" cy="113.5" r="8" class="pad-ring"/><circle cx="198.5" cy="113.5" r="4" class="pad-drill"/>
-<circle cx="221.5" cy="113.5" r="8" class="pad-ring"/><circle cx="221.5" cy="113.5" r="4" class="pad-drill"/>
-<circle cx="244.5" cy="113.5" r="8" class="pad-ring"/><circle cx="244.5" cy="113.5" r="4" class="pad-drill"/>
-<!-- Row B (signals) y=136.5 -->
-<circle cx="198.5" cy="136.5" r="8" class="pad-ring"/><circle cx="198.5" cy="136.5" r="4" class="pad-drill"/>
-<circle cx="221.5" cy="136.5" r="8" class="pad-ring"/><circle cx="221.5" cy="136.5" r="4" class="pad-drill"/>
-<circle cx="244.5" cy="136.5" r="8" class="pad-ring"/><circle cx="244.5" cy="136.5" r="4" class="pad-drill"/>
-<!-- pin-1 marker (top-right = VDD) -->
-<rect x="238" y="107" width="13" height="13" rx="0" fill="none" stroke="#e0e0e0" stroke-width="1.5"/>
-<!-- Row A labels (mirrored: left=L/R, mid=GND, right=VDD) -->
-<text x="192" y="105" class="gnd-lbl">L/R</text>
-<text x="215" y="105" class="gnd-lbl">GND</text>
-<text x="238" y="105" class="pwr-lbl">3V3</text>
-<!-- Row B labels (mirrored: left=SD, mid=WS, right=SCK) -->
-<text x="190" y="158" class="net-lbl">SD</text>
-<text x="213" y="158" class="net-lbl">WS</text>
-<text x="236" y="158" class="net-lbl">SCK</text>
-<!-- cable group labels -->
-<text x="170" y="118" text-anchor="end" class="net-lbl">A →</text>
-<text x="170" y="141" text-anchor="end" class="net-lbl">B →</text>
-
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!-- J4  Speaker terminal  1×2  — mirrored to right side        -->
-<!-- Original top: x=108 w=50 → mirrored: x=617  (775-108-50)  -->
-<!-- Pad centers top: (125,263),(125,287) → mirrored: (650,263),(650,287) -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<rect x="617" y="220" width="50" height="80" rx="3" class="comp-body"/>
-<text x="642" y="237" text-anchor="middle" class="silk silk-sm">J4</text>
-<text x="642" y="250" text-anchor="middle" class="silk silk-sm">Spk</text>
-<!-- large screw-terminal pads -->
-<circle cx="650" cy="263" r="11" class="pad-ring"/><circle cx="650" cy="263" r="6" class="pad-big-d"/>
-<circle cx="650" cy="287" r="11" class="pad-ring"/><circle cx="650" cy="287" r="6" class="pad-big-d"/>
-<text x="611" y="267" text-anchor="end" class="net-lbl">OUT+</text>
-<text x="611" y="291" text-anchor="end" class="net-lbl">OUT−</text>
-
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!-- J5  Button connector  1×4  — mirrored to right side        -->
-<!-- Original top: x=108 w=50 → mirrored: x=617  (775-108-50)  -->
-<!-- Pad centers top: (122.5,366.5/.../435.5) → mirrored: (652.5,…) -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<rect x="617" y="326" width="50" height="105" rx="3" class="comp-body"/>
-<text x="642" y="343" text-anchor="middle" class="silk silk-sm">J5</text>
-<text x="642" y="356" text-anchor="middle" class="silk silk-sm">Btn</text>
-
-<circle cx="652.5" cy="366.5" r="8" class="pad-ring"/><circle cx="652.5" cy="366.5" r="4" class="pad-drill"/>
-<circle cx="652.5" cy="389.5" r="8" class="pad-ring"/><circle cx="652.5" cy="389.5" r="4" class="pad-drill"/>
-<circle cx="652.5" cy="412.5" r="8" class="pad-ring"/><circle cx="652.5" cy="412.5" r="4" class="pad-drill"/>
-<circle cx="652.5" cy="435.5" r="8" class="pad-ring"/><circle cx="652.5" cy="435.5" r="4" class="pad-drill"/>
-<text x="611" y="370" text-anchor="end" class="net-lbl">SW</text>
-<text x="611" y="393" text-anchor="end" class="gnd-lbl">GND</text>
-<text x="611" y="416" text-anchor="end" class="net-lbl">LED+</text>
-<text x="611" y="439" text-anchor="end" class="gnd-lbl">GND</text>
-
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!-- J1  40-pin GPIO shrouded male IDC header — nearly centred      -->
-<!-- Original top: x=158 w=457 → mirrored: x=160  (775-158-457)    -->
-<!-- Row1 (odd) pad x-centers top: 169.5,192.5,...,606.5            -->
-<!--   mirrored:                   605.5,582.5,...,168.5            -->
-<!-- In bottom view: rightmost=pin1(3.3V), leftmost=pin39(GPIO19)   -->
-<!-- Row2 (even) same x-mapping, y=527.5                            -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<rect x="160" y="493" width="457" height="46" rx="3" class="comp-body"/>
-<text x="388" y="509" text-anchor="middle" class="silk silk-md">J1 · 40-pin GPIO Shrouded IDC Header</text>
-
-<!-- Row 1 (odd pins 1→39, now rightmost→leftmost), y_center=519.5 -->
-<circle cx="605.5" cy="519.5" r="7" class="pad-ring"/><circle cx="605.5" cy="519.5" r="3.5" class="pad-drill"/>
-<circle cx="582.5" cy="519.5" r="7" class="pad-ring"/><circle cx="582.5" cy="519.5" r="3.5" class="pad-drill"/>
-<circle cx="559.5" cy="519.5" r="7" class="pad-ring"/><circle cx="559.5" cy="519.5" r="3.5" class="pad-drill"/>
-<circle cx="536.5" cy="519.5" r="7" class="pad-ring"/><circle cx="536.5" cy="519.5" r="3.5" class="pad-drill"/>
-<circle cx="513.5" cy="519.5" r="7" class="pad-ring"/><circle cx="513.5" cy="519.5" r="3.5" class="pad-drill"/>
-<circle cx="490.5" cy="519.5" r="7" class="pad-ring"/><circle cx="490.5" cy="519.5" r="3.5" class="pad-drill"/>
-<circle cx="467.5" cy="519.5" r="7" class="pad-ring"/><circle cx="467.5" cy="519.5" r="3.5" class="pad-drill"/>
-<circle cx="444.5" cy="519.5" r="7" class="pad-ring"/><circle cx="444.5" cy="519.5" r="3.5" class="pad-drill"/>
-<circle cx="421.5" cy="519.5" r="7" class="pad-ring"/><circle cx="421.5" cy="519.5" r="3.5" class="pad-drill"/>
-<circle cx="398.5" cy="519.5" r="7" class="pad-ring"/><circle cx="398.5" cy="519.5" r="3.5" class="pad-drill"/>
-<circle cx="375.5" cy="519.5" r="7" class="pad-ring"/><circle cx="375.5" cy="519.5" r="3.5" class="pad-drill"/>
-<circle cx="352.5" cy="519.5" r="7" class="pad-ring"/><circle cx="352.5" cy="519.5" r="3.5" class="pad-drill"/>
-<circle cx="329.5" cy="519.5" r="7" class="pad-ring"/><circle cx="329.5" cy="519.5" r="3.5" class="pad-drill"/>
-<circle cx="306.5" cy="519.5" r="7" class="pad-ring"/><circle cx="306.5" cy="519.5" r="3.5" class="pad-drill"/>
-<circle cx="283.5" cy="519.5" r="7" class="pad-ring"/><circle cx="283.5" cy="519.5" r="3.5" class="pad-drill"/>
-<circle cx="260.5" cy="519.5" r="7" class="pad-ring"/><circle cx="260.5" cy="519.5" r="3.5" class="pad-drill"/>
-<circle cx="237.5" cy="519.5" r="7" class="pad-ring"/><circle cx="237.5" cy="519.5" r="3.5" class="pad-drill"/>
-<circle cx="214.5" cy="519.5" r="7" class="pad-ring"/><circle cx="214.5" cy="519.5" r="3.5" class="pad-drill"/>
-<circle cx="191.5" cy="519.5" r="7" class="pad-ring"/><circle cx="191.5" cy="519.5" r="3.5" class="pad-drill"/>
-<circle cx="168.5" cy="519.5" r="7" class="pad-ring"/><circle cx="168.5" cy="519.5" r="3.5" class="pad-drill"/>
-
-<!-- Row 2 (even pins 2→40), y_center=527.5 -->
-<circle cx="605.5" cy="527.5" r="7" class="pad-ring"/><circle cx="605.5" cy="527.5" r="3.5" class="pad-drill"/>
-<circle cx="582.5" cy="527.5" r="7" class="pad-ring"/><circle cx="582.5" cy="527.5" r="3.5" class="pad-drill"/>
-<circle cx="559.5" cy="527.5" r="7" class="pad-ring"/><circle cx="559.5" cy="527.5" r="3.5" class="pad-drill"/>
-<circle cx="536.5" cy="527.5" r="7" class="pad-ring"/><circle cx="536.5" cy="527.5" r="3.5" class="pad-drill"/>
-<circle cx="513.5" cy="527.5" r="7" class="pad-ring"/><circle cx="513.5" cy="527.5" r="3.5" class="pad-drill"/>
-<circle cx="490.5" cy="527.5" r="7" class="pad-ring"/><circle cx="490.5" cy="527.5" r="3.5" class="pad-drill"/>
-<circle cx="467.5" cy="527.5" r="7" class="pad-ring"/><circle cx="467.5" cy="527.5" r="3.5" class="pad-drill"/>
-<circle cx="444.5" cy="527.5" r="7" class="pad-ring"/><circle cx="444.5" cy="527.5" r="3.5" class="pad-drill"/>
-<circle cx="421.5" cy="527.5" r="7" class="pad-ring"/><circle cx="421.5" cy="527.5" r="3.5" class="pad-drill"/>
-<circle cx="398.5" cy="527.5" r="7" class="pad-ring"/><circle cx="398.5" cy="527.5" r="3.5" class="pad-drill"/>
-<circle cx="375.5" cy="527.5" r="7" class="pad-ring"/><circle cx="375.5" cy="527.5" r="3.5" class="pad-drill"/>
-<circle cx="352.5" cy="527.5" r="7" class="pad-ring"/><circle cx="352.5" cy="527.5" r="3.5" class="pad-drill"/>
-<circle cx="329.5" cy="527.5" r="7" class="pad-ring"/><circle cx="329.5" cy="527.5" r="3.5" class="pad-drill"/>
-<circle cx="306.5" cy="527.5" r="7" class="pad-ring"/><circle cx="306.5" cy="527.5" r="3.5" class="pad-drill"/>
-<circle cx="283.5" cy="527.5" r="7" class="pad-ring"/><circle cx="283.5" cy="527.5" r="3.5" class="pad-drill"/>
-<circle cx="260.5" cy="527.5" r="7" class="pad-ring"/><circle cx="260.5" cy="527.5" r="3.5" class="pad-drill"/>
-<circle cx="237.5" cy="527.5" r="7" class="pad-ring"/><circle cx="237.5" cy="527.5" r="3.5" class="pad-drill"/>
-<circle cx="214.5" cy="527.5" r="7" class="pad-ring"/><circle cx="214.5" cy="527.5" r="3.5" class="pad-drill"/>
-<circle cx="191.5" cy="527.5" r="7" class="pad-ring"/><circle cx="191.5" cy="527.5" r="3.5" class="pad-drill"/>
-<circle cx="168.5" cy="527.5" r="7" class="pad-ring"/><circle cx="168.5" cy="527.5" r="3.5" class="pad-drill"/>
-
-<!-- pin1 marker (square ring around rightmost pad in row1) -->
-<rect x="599" y="513" width="13" height="13" rx="0" fill="none" stroke="#e0e0e0" stroke-width="1.5"/>
-<text x="609" y="543" class="pwr-lbl" font-size="8">1</text>
-<text x="163" y="543" class="gnd-lbl" font-size="8">40</text>
-
-<!-- ═══════════════════════════════════════════════════ -->
-<!-- Bottom-layer trace routing (simplified key routes) -->
-<!-- 3.3V: J1 pin1 (right, x=605.5) → J2 pin1 (620.5,131) and J3 pin1 (242.5,131) -->
-<!-- ═══════════════════════════════════════════════════ -->
-<polyline points="605.5,519 605.5,478 635,478 635,131 620.5,131" class="trace-b" stroke="#e04040"/>
-<polyline points="605.5,478 242.5,478 242.5,131" class="trace-b" stroke="#e04040"/>
-
-<!-- GND: J1 pin6 top-view x=192 → mirrored x=583, row2 y=527 → along GND pour -->
-<polyline points="582.5,527 582.5,472 100,472" class="trace-b" stroke="#4060e0"/>
-
-<!-- BCLK/SCK: J1 top-view x=415 → mirrored x=360 → J3 pin4(SCK) at x=150.5 and J2 via -->
-<polyline points="359.5,519 359.5,465 150.5,465 150.5,131" class="trace-b"/>
-<polyline points="359.5,465 528.5,465 528.5,131" class="trace-b"/>
-
-<!-- LRCLK/WS: J1 top-view x=530 → mirrored x=245 → J3 pin5(WS) x=173.5 and J2 via -->
-<polyline points="244.5,519 244.5,458 173.5,458 173.5,131" class="trace-b"/>
-<polyline points="244.5,458 505.5,458 505.5,131" class="trace-b"/>
-
-<!-- I2S_DOUT: J1 top-view x=600 → mirrored x=175 → right side up -->
-<polyline points="168.5,519 168.5,470" class="trace-b"/>
-
-<!-- Speaker OUT+ → J4 pin1 (mirrored): top-view U1 OUT+ was at x=485,y=275 → mirrored x=290 -->
-<!-- trace from mirrored U1 right side (x=428) to J4 (x=650) on bottom -->
-<polyline points="290,275 260,275 260,200 635,200 635,263 650,263" class="trace-b"/>
-<polyline points="290,295 255,295 255,195 640,195 640,287 650,287" class="trace-b"/>
-
-<!-- Vias (top-to-bottom connections) shown as small circles -->
-<circle cx="260" cy="200" r="5" class="via"/><circle cx="260" cy="200" r="2.5" class="via-d"/>
-<circle cx="255" cy="195" r="5" class="via"/><circle cx="255" cy="195" r="2.5" class="via-d"/>
-<circle cx="605.5" cy="478" r="5" class="via"/><circle cx="605.5" cy="478" r="2.5" class="via-d"/>
-<circle cx="359.5" cy="465" r="5" class="via"/><circle cx="359.5" cy="465" r="2.5" class="via-d"/>
-<circle cx="244.5" cy="458" r="5" class="via"/><circle cx="244.5" cy="458" r="2.5" class="via-d"/>
-
-<!-- ═══════════════════════════════════════════════════ -->
-<!-- Legend                                             -->
-<!-- ═══════════════════════════════════════════════════ -->
-<rect x="95" y="580" width="585" height="60" rx="5" fill="#0a180a" stroke="#204020" stroke-width="1"/>
-<text x="115" y="598" class="legend-t" fill="#d4a017">●</text>
-<text x="128" y="598" class="legend-t">Annular ring (solder side)</text>
-<text x="330" y="598" class="legend-t" fill="#8B6914">▬</text>
-<text x="345" y="598" class="legend-t">B.Cu GND pour</text>
-<text x="500" y="598" class="legend-t" fill="#d4a017">◎ via</text>
-<text x="115" y="618" class="legend-t" fill="#e04040">─</text>
-<text x="127" y="618" class="legend-t">+3.3V</text>
-<text x="190" y="618" class="legend-t" fill="#4060e0">─</text>
-<text x="202" y="618" class="legend-t">GND</text>
-<text x="255" y="618" class="legend-t" fill="#c8900a">─</text>
-<text x="267" y="618" class="legend-t">Signal</text>
-<text x="360" y="618" class="legend-t">□ pin-1 marker</text>
-<text x="480" y="618" class="legend-t">- - SMD ghost (top)</text>
-
-<!-- ═══════════════════════════════════════════════════ -->
-<!-- Revision block                                     -->
-<!-- ═══════════════════════════════════════════════════ -->
-<rect x="680" y="640" width="165" height="70" rx="3" fill="#0a180a" stroke="#204020" stroke-width="1"/>
-<text x="762" y="657" text-anchor="middle" class="legend-t" font-weight="bold">PiTalk PCB</text>
-<text x="762" y="672" text-anchor="middle" class="legend-t">Rev 1.0 · 2026-05-28</text>
-<text x="762" y="687" text-anchor="middle" class="legend-t">65 × 55 mm  2L  Bottom</text>
-<text x="762" y="702" text-anchor="middle" class="legend-t">assaftl.net@gmail.com</text>
-
+<?xml version="1.0" standalone="no"?>
+ <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" 
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"> 
+<svg
+  xmlns:svg="http://www.w3.org/2000/svg"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+  version="1.1"
+  width="64.9986mm" height="54.9910mm" viewBox="0.0000 0.0000 64.9986 54.9910">
+<title>SVG Image created as pitalk_pcb_bottom.svg date 2026-06-07T01:42:16 </title>
+  <desc>Image generated by PCBNEW </desc>
+<g style="fill:#000000; fill-opacity:1.0000;stroke:#000000; stroke-opacity:1.0000;
+stroke-linecap:round; stroke-linejoin:round;"
+ transform="translate(0 0) scale(1 1)">
+<path style="fill:#4D7FC4; fill-opacity:1.0000; stroke:none;fill-rule:evenodd;"
+d="M 7.8486,46.4000
+7.8296,46.3043
+7.7754,46.2232
+7.6943,46.1690
+7.5986,46.1500
+6.3986,46.1500
+6.3029,46.1690
+6.2218,46.2232
+6.1676,46.3043
+6.1486,46.4000
+6.1486,47.6000
+6.1676,47.6957
+6.2218,47.7768
+6.3029,47.8310
+6.3986,47.8500
+7.5986,47.8500
+7.6943,47.8310
+7.7754,47.7768
+7.8296,47.6957
+7.8486,47.6000
+Z" /> 
+</g>
+<g style="fill:#4D7FC4; fill-opacity:1.0000; stroke:none;">
+<circle cx="6.9986" cy="49.5400" r="0.8500" /> 
+<circle cx="9.5386" cy="47.0000" r="0.8500" /> 
+<circle cx="9.5386" cy="49.5400" r="0.8500" /> 
+<circle cx="12.0786" cy="47.0000" r="0.8500" /> 
+<circle cx="12.0786" cy="49.5400" r="0.8500" /> 
+<circle cx="14.6186" cy="47.0000" r="0.8500" /> 
+<circle cx="14.6186" cy="49.5400" r="0.8500" /> 
+<circle cx="17.1586" cy="47.0000" r="0.8500" /> 
+<circle cx="17.1586" cy="49.5400" r="0.8500" /> 
+<circle cx="19.6986" cy="47.0000" r="0.8500" /> 
+<circle cx="19.6986" cy="49.5400" r="0.8500" /> 
+<circle cx="22.2386" cy="47.0000" r="0.8500" /> 
+<circle cx="22.2386" cy="49.5400" r="0.8500" /> 
+<circle cx="24.7786" cy="47.0000" r="0.8500" /> 
+<circle cx="24.7786" cy="49.5400" r="0.8500" /> 
+<circle cx="27.3186" cy="47.0000" r="0.8500" /> 
+<circle cx="27.3186" cy="49.5400" r="0.8500" /> 
+<circle cx="29.8586" cy="47.0000" r="0.8500" /> 
+<circle cx="29.8586" cy="49.5400" r="0.8500" /> 
+<circle cx="32.3986" cy="47.0000" r="0.8500" /> 
+<circle cx="32.3986" cy="49.5400" r="0.8500" /> 
+<circle cx="34.9386" cy="47.0000" r="0.8500" /> 
+<circle cx="34.9386" cy="49.5400" r="0.8500" /> 
+<circle cx="37.4786" cy="47.0000" r="0.8500" /> 
+<circle cx="37.4786" cy="49.5400" r="0.8500" /> 
+<circle cx="40.0186" cy="47.0000" r="0.8500" /> 
+<circle cx="40.0186" cy="49.5400" r="0.8500" /> 
+<circle cx="42.5586" cy="47.0000" r="0.8500" /> 
+<circle cx="42.5586" cy="49.5400" r="0.8500" /> 
+<circle cx="45.0986" cy="47.0000" r="0.8500" /> 
+<circle cx="45.0986" cy="49.5400" r="0.8500" /> 
+<circle cx="47.6386" cy="47.0000" r="0.8500" /> 
+<circle cx="47.6386" cy="49.5400" r="0.8500" /> 
+<circle cx="50.1786" cy="47.0000" r="0.8500" /> 
+<circle cx="50.1786" cy="49.5400" r="0.8500" /> 
+<circle cx="52.7186" cy="47.0000" r="0.8500" /> 
+<circle cx="52.7186" cy="49.5400" r="0.8500" /> 
+<circle cx="55.2586" cy="47.0000" r="0.8500" /> 
+<circle cx="55.2586" cy="49.5400" r="0.8500" /> 
+<path style="fill:#4D7FC4; fill-opacity:1.0000; stroke:none;fill-rule:evenodd;"
+d="M 58.8686,5.1550
+58.8496,5.0593
+58.7954,4.9782
+58.7143,4.9240
+58.6186,4.9050
+57.3786,4.9050
+57.2829,4.9240
+57.2018,4.9782
+57.1476,5.0593
+57.1286,5.1550
+57.1286,6.8450
+57.1476,6.9407
+57.2018,7.0218
+57.2829,7.0760
+57.3786,7.0950
+58.6186,7.0950
+58.7143,7.0760
+58.7954,7.0218
+58.8496,6.9407
+58.8686,6.8450
+Z" /> 
+</g>
+<g style="fill:none; 
+stroke:#4D7FC4; stroke-width:1.7400; stroke-opacity:1; 
+stroke-linecap:round; stroke-linejoin:round;">
+<path d="M55.4586 5.7750
+L55.4586 6.2250
+" />
+<path d="M52.9186 5.7750
+L52.9186 6.2250
+" />
+<path d="M50.3786 5.7750
+L50.3786 6.2250
+" />
+<path d="M47.8386 5.7750
+L47.8386 6.2250
+" />
+<path d="M45.2986 5.7750
+L45.2986 6.2250
+" />
+<path d="M42.7586 5.7750
+L42.7586 6.2250
+" />
+<path d="M40.2186 5.7750
+L40.2186 6.2250
+" />
+<path d="M37.6786 5.7750
+L37.6786 6.2250
+" />
+<path d="M35.1386 5.7750
+L35.1386 6.2250
+" />
+<path d="M32.5986 5.7750
+L32.5986 6.2250
+" />
+<path d="M30.0586 5.7750
+L30.0586 6.2250
+" />
+<path d="M27.5186 5.7750
+L27.5186 6.2250
+" />
+<path d="M24.9786 5.7750
+L24.9786 6.2250
+" />
+<path d="M22.4386 5.7750
+L22.4386 6.2250
+" />
+<path style="fill:#4D7FC4; fill-opacity:1.0000; stroke:none;fill-rule:evenodd;"
+d="M 11.8486,6.8500
+11.8486,5.1500
+10.1486,5.1500
+10.1486,6.8500
+Z" /> 
+</g>
+<g style="fill:#4D7FC4; fill-opacity:1.0000; stroke:none;">
+<circle cx="8.4586" cy="6.0000" r="0.8500" /> 
+<circle cx="10.9986" cy="8.5400" r="0.8500" /> 
+<circle cx="8.4586" cy="8.5400" r="0.8500" /> 
+<circle cx="10.9986" cy="11.0800" r="0.8500" /> 
+<circle cx="8.4586" cy="11.0800" r="0.8500" /> 
+<path style="fill:#4D7FC4; fill-opacity:1.0000; stroke:none;fill-rule:evenodd;"
+d="M 59.8486,21.8500
+59.8486,20.1500
+58.1486,20.1500
+58.1486,21.8500
+Z" /> 
+<circle cx="58.9986" cy="23.5400" r="0.8500" /> 
+<circle cx="58.9986" cy="26.0800" r="0.8500" /> 
+<circle cx="58.9986" cy="28.6200" r="0.8500" /> 
+<circle cx="58.9986" cy="31.1600" r="0.8500" /> 
+<circle cx="58.9986" cy="33.7000" r="0.8500" /> 
+<circle cx="58.9986" cy="36.2400" r="0.8500" /> 
+<path style="fill:#4D7FC4; fill-opacity:1.0000; stroke:none;fill-rule:evenodd;"
+d="M 50.8486,37.8500
+50.8486,36.1500
+49.1486,36.1500
+49.1486,37.8500
+Z" /> 
+<circle cx="47.4586" cy="37.0000" r="0.8500" /> 
+<circle cx="44.9186" cy="37.0000" r="0.8500" /> 
+<circle cx="42.3786" cy="37.0000" r="0.8500" /> 
+<path style="fill:#02FFEE; fill-opacity:0.4000; stroke:none;fill-rule:evenodd;"
+d="M 7.8486,46.4000
+7.8296,46.3043
+7.7754,46.2232
+7.6943,46.1690
+7.5986,46.1500
+6.3986,46.1500
+6.3029,46.1690
+6.2218,46.2232
+6.1676,46.3043
+6.1486,46.4000
+6.1486,47.6000
+6.1676,47.6957
+6.2218,47.7768
+6.3029,47.8310
+6.3986,47.8500
+7.5986,47.8500
+7.6943,47.8310
+7.7754,47.7768
+7.8296,47.6957
+7.8486,47.6000
+Z" /> 
+</g>
+<g style="fill:#02FFEE; fill-opacity:0.4000; stroke:none;">
+<circle cx="6.9986" cy="49.5400" r="0.8500" /> 
+<circle cx="9.5386" cy="47.0000" r="0.8500" /> 
+<circle cx="9.5386" cy="49.5400" r="0.8500" /> 
+<circle cx="12.0786" cy="47.0000" r="0.8500" /> 
+<circle cx="12.0786" cy="49.5400" r="0.8500" /> 
+<circle cx="14.6186" cy="47.0000" r="0.8500" /> 
+<circle cx="14.6186" cy="49.5400" r="0.8500" /> 
+<circle cx="17.1586" cy="47.0000" r="0.8500" /> 
+<circle cx="17.1586" cy="49.5400" r="0.8500" /> 
+<circle cx="19.6986" cy="47.0000" r="0.8500" /> 
+<circle cx="19.6986" cy="49.5400" r="0.8500" /> 
+<circle cx="22.2386" cy="47.0000" r="0.8500" /> 
+<circle cx="22.2386" cy="49.5400" r="0.8500" /> 
+<circle cx="24.7786" cy="47.0000" r="0.8500" /> 
+<circle cx="24.7786" cy="49.5400" r="0.8500" /> 
+<circle cx="27.3186" cy="47.0000" r="0.8500" /> 
+<circle cx="27.3186" cy="49.5400" r="0.8500" /> 
+<circle cx="29.8586" cy="47.0000" r="0.8500" /> 
+<circle cx="29.8586" cy="49.5400" r="0.8500" /> 
+<circle cx="32.3986" cy="47.0000" r="0.8500" /> 
+<circle cx="32.3986" cy="49.5400" r="0.8500" /> 
+<circle cx="34.9386" cy="47.0000" r="0.8500" /> 
+<circle cx="34.9386" cy="49.5400" r="0.8500" /> 
+<circle cx="37.4786" cy="47.0000" r="0.8500" /> 
+<circle cx="37.4786" cy="49.5400" r="0.8500" /> 
+<circle cx="40.0186" cy="47.0000" r="0.8500" /> 
+<circle cx="40.0186" cy="49.5400" r="0.8500" /> 
+<circle cx="42.5586" cy="47.0000" r="0.8500" /> 
+<circle cx="42.5586" cy="49.5400" r="0.8500" /> 
+<circle cx="45.0986" cy="47.0000" r="0.8500" /> 
+<circle cx="45.0986" cy="49.5400" r="0.8500" /> 
+<circle cx="47.6386" cy="47.0000" r="0.8500" /> 
+<circle cx="47.6386" cy="49.5400" r="0.8500" /> 
+<circle cx="50.1786" cy="47.0000" r="0.8500" /> 
+<circle cx="50.1786" cy="49.5400" r="0.8500" /> 
+<circle cx="52.7186" cy="47.0000" r="0.8500" /> 
+<circle cx="52.7186" cy="49.5400" r="0.8500" /> 
+<circle cx="55.2586" cy="47.0000" r="0.8500" /> 
+<circle cx="55.2586" cy="49.5400" r="0.8500" /> 
+<path style="fill:#02FFEE; fill-opacity:0.4000; stroke:none;fill-rule:evenodd;"
+d="M 58.8686,5.1550
+58.8496,5.0593
+58.7954,4.9782
+58.7143,4.9240
+58.6186,4.9050
+57.3786,4.9050
+57.2829,4.9240
+57.2018,4.9782
+57.1476,5.0593
+57.1286,5.1550
+57.1286,6.8450
+57.1476,6.9407
+57.2018,7.0218
+57.2829,7.0760
+57.3786,7.0950
+58.6186,7.0950
+58.7143,7.0760
+58.7954,7.0218
+58.8496,6.9407
+58.8686,6.8450
+Z" /> 
+</g>
+<g style="fill:none; 
+stroke:#02FFEE; stroke-width:1.7400; stroke-opacity:1; 
+stroke-linecap:round; stroke-linejoin:round;">
+<path d="M55.4586 5.7750
+L55.4586 6.2250
+" />
+<path d="M52.9186 5.7750
+L52.9186 6.2250
+" />
+<path d="M50.3786 5.7750
+L50.3786 6.2250
+" />
+<path d="M47.8386 5.7750
+L47.8386 6.2250
+" />
+<path d="M45.2986 5.7750
+L45.2986 6.2250
+" />
+<path d="M42.7586 5.7750
+L42.7586 6.2250
+" />
+<path d="M40.2186 5.7750
+L40.2186 6.2250
+" />
+<path d="M37.6786 5.7750
+L37.6786 6.2250
+" />
+<path d="M35.1386 5.7750
+L35.1386 6.2250
+" />
+<path d="M32.5986 5.7750
+L32.5986 6.2250
+" />
+<path d="M30.0586 5.7750
+L30.0586 6.2250
+" />
+<path d="M27.5186 5.7750
+L27.5186 6.2250
+" />
+<path d="M24.9786 5.7750
+L24.9786 6.2250
+" />
+<path d="M22.4386 5.7750
+L22.4386 6.2250
+" />
+<path style="fill:#02FFEE; fill-opacity:0.4000; stroke:none;fill-rule:evenodd;"
+d="M 11.8486,6.8500
+11.8486,5.1500
+10.1486,5.1500
+10.1486,6.8500
+Z" /> 
+</g>
+<g style="fill:#02FFEE; fill-opacity:0.4000; stroke:none;">
+<circle cx="8.4586" cy="6.0000" r="0.8500" /> 
+<circle cx="10.9986" cy="8.5400" r="0.8500" /> 
+<circle cx="8.4586" cy="8.5400" r="0.8500" /> 
+<circle cx="10.9986" cy="11.0800" r="0.8500" /> 
+<circle cx="8.4586" cy="11.0800" r="0.8500" /> 
+<path style="fill:#02FFEE; fill-opacity:0.4000; stroke:none;fill-rule:evenodd;"
+d="M 59.8486,21.8500
+59.8486,20.1500
+58.1486,20.1500
+58.1486,21.8500
+Z" /> 
+<circle cx="58.9986" cy="23.5400" r="0.8500" /> 
+<circle cx="58.9986" cy="26.0800" r="0.8500" /> 
+<circle cx="58.9986" cy="28.6200" r="0.8500" /> 
+<circle cx="58.9986" cy="31.1600" r="0.8500" /> 
+<circle cx="58.9986" cy="33.7000" r="0.8500" /> 
+<circle cx="58.9986" cy="36.2400" r="0.8500" /> 
+<path style="fill:#02FFEE; fill-opacity:0.4000; stroke:none;fill-rule:evenodd;"
+d="M 50.8486,37.8500
+50.8486,36.1500
+49.1486,36.1500
+49.1486,37.8500
+Z" /> 
+<circle cx="47.4586" cy="37.0000" r="0.8500" /> 
+<circle cx="44.9186" cy="37.0000" r="0.8500" /> 
+<circle cx="42.3786" cy="37.0000" r="0.8500" /> 
+<circle cx="61.9986" cy="3.0000" r="1.6000" /> 
+<circle cx="2.9986" cy="3.0000" r="1.6000" /> 
+<circle cx="61.9986" cy="52.0000" r="1.6000" /> 
+<circle cx="2.9986" cy="52.0000" r="1.6000" /> 
+<path style="fill:none; 
+stroke:#D0D2CD; stroke-width:0.1000; stroke-opacity:1; 
+stroke-linecap:round; stroke-linejoin:round;fill:none"
+d="M 64.9986,0.0000
+-0.0014,0.0000
+-0.0014,55.0000
+64.9986,55.0000
+Z" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="6.9986" cy="47.0000" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="6.9986" cy="49.5400" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="9.5386" cy="47.0000" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="9.5386" cy="49.5400" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="12.0786" cy="47.0000" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="12.0786" cy="49.5400" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="14.6186" cy="47.0000" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="14.6186" cy="49.5400" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="17.1586" cy="47.0000" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="17.1586" cy="49.5400" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="19.6986" cy="47.0000" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="19.6986" cy="49.5400" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="22.2386" cy="47.0000" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="22.2386" cy="49.5400" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="24.7786" cy="47.0000" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="24.7786" cy="49.5400" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="27.3186" cy="47.0000" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="27.3186" cy="49.5400" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="29.8586" cy="47.0000" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="29.8586" cy="49.5400" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="32.3986" cy="47.0000" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="32.3986" cy="49.5400" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="34.9386" cy="47.0000" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="34.9386" cy="49.5400" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="37.4786" cy="47.0000" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="37.4786" cy="49.5400" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="40.0186" cy="47.0000" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="40.0186" cy="49.5400" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="42.5586" cy="47.0000" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="42.5586" cy="49.5400" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="45.0986" cy="47.0000" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="45.0986" cy="49.5400" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="47.6386" cy="47.0000" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="47.6386" cy="49.5400" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="50.1786" cy="47.0000" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="50.1786" cy="49.5400" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="52.7186" cy="47.0000" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="52.7186" cy="49.5400" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="55.2586" cy="47.0000" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="55.2586" cy="49.5400" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="57.9986" cy="6.0000" r="0.5950" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="55.4586" cy="6.0000" r="0.5950" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="52.9186" cy="6.0000" r="0.5950" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="50.3786" cy="6.0000" r="0.5950" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="47.8386" cy="6.0000" r="0.5950" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="45.2986" cy="6.0000" r="0.5950" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="42.7586" cy="6.0000" r="0.5950" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="40.2186" cy="6.0000" r="0.5950" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="37.6786" cy="6.0000" r="0.5950" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="35.1386" cy="6.0000" r="0.5950" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="32.5986" cy="6.0000" r="0.5950" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="30.0586" cy="6.0000" r="0.5950" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="27.5186" cy="6.0000" r="0.5950" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="24.9786" cy="6.0000" r="0.5950" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="22.4386" cy="6.0000" r="0.5950" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="10.9986" cy="6.0000" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="8.4586" cy="6.0000" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="10.9986" cy="8.5400" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="8.4586" cy="8.5400" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="10.9986" cy="11.0800" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="8.4586" cy="11.0800" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="58.9986" cy="21.0000" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="58.9986" cy="23.5400" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="58.9986" cy="26.0800" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="58.9986" cy="28.6200" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="58.9986" cy="31.1600" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="58.9986" cy="33.7000" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="58.9986" cy="36.2400" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="49.9986" cy="37.0000" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="47.4586" cy="37.0000" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="44.9186" cy="37.0000" r="0.5000" /> 
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="42.3786" cy="37.0000" r="0.5000" /> 
+</g>
+<g style="fill:#000000; fill-opacity:1.0000; stroke:none;">
+<circle cx="61.9986" cy="3.0000" r="1.6000" /> 
+<circle cx="2.9986" cy="3.0000" r="1.6000" /> 
+<circle cx="61.9986" cy="52.0000" r="1.6000" /> 
+<circle cx="2.9986" cy="52.0000" r="1.6000" /> 
+</g> 
 </svg>

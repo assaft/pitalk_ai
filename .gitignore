@@ -1,4 +1,8 @@
 .DS_Store
 .claude/
 *.kicad_prl
+*.lck
 /pitalk_statistics.rpt
+pcb/.history/
+pcb/.step
+pcb/*.step

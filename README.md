@@ -42,9 +42,9 @@ Using the touch screen, user A can initiate a recording of a message to a partic
 * The PCB should connect to the Raspberry PI using an IDC ribbon cable and shrouded 2×20 male headers.
 
 ## PCB Board requirements
-* The board may include the amplifier as part of it.
+* The amplifier should be external to the PCB and connect through a 1×7 female 2.54 mm header on the PCB.
 * The board should not include the microphone because the microphone is attached to the front of the device.
-* there should be board connectors on the pcb for connecting it to the microphone, speaker, button and screen; the screen connector should be keyed/locking.
+* there should be board connectors on the pcb for connecting it to the microphone, external amplifier, button and screen; the screen connector should be keyed/locking.
 
 # Components
 
