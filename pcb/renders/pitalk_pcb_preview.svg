@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="3400" height="1800" viewBox="0 0 3400 1800">
-  <rect width="3400" height="1800" fill="#f4f4f1"/>
-  <text x="850" y="105" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="700" fill="#222">PiTalk PCB - Top</text>
-  <text x="2550" y="105" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="700" fill="#222">PiTalk PCB - Bottom</text>
-  <rect x="70" y="150" width="1560" height="1560" rx="28" fill="#ffffff" stroke="#c8c8c8" stroke-width="4"/>
-  <rect x="1770" y="150" width="1560" height="1560" rx="28" fill="#ffffff" stroke="#c8c8c8" stroke-width="4"/>
-  <image href="pitalk_pcb_top.png" x="90" y="170" width="1520" height="1520" preserveAspectRatio="xMidYMid meet"/>
-  <image href="pitalk_pcb_bottom.png" x="1790" y="170" width="1520" height="1520" preserveAspectRatio="xMidYMid meet"/>
-</svg>
