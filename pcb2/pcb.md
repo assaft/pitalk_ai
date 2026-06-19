@@ -52,25 +52,31 @@ Single module combining an SPI display (ST7789T3) and an I2C capacitive
 touch controller (CST816D). Driven by SPI0 (display) and I2C1 (touch).
 Pin mapping follows the "Working with Raspberry Pi" table on the
 [Waveshare 2inch Capacitive Touch LCD wiki](https://www.waveshare.com/wiki/2inch_Capacitive_Touch_LCD).
+The `accessory_pin_id` numbering follows the module's
+[pinout diagram](https://www.waveshare.com/img/devkit/LCD/2inch-Capacitive-Touch-LCD/2inch-Capacitive-Touch-LCD-details-9.jpg)
+(the 15-pin header).
 
-| pi_pin | pi_bcm | accessory_pin |
-|-------:|--------|---------------|
-| 17 | 3V3          | vcc (v3.3)        |
-| 25 | GND          | gnd               |
-| 21 | BCM9 (MISO)  | miso (spi miso)   |
-| 19 | BCM10 (MOSI) | mosi (spi data in) |
-| 23 | BCM11 (SCLK) | sclk (spi clock)  |
-| 24 | BCM8 (CE0)   | lcd_cs (display chip select) |
-| 22 | BCM25        | lcd_dc (data/command) |
-| 13 | BCM27        | lcd_rst (display reset) |
-| 32 | BCM12        | lcd_bl (backlight) — remapped from BCM18, see note |
-| 3  | BCM2 (SDA1)  | tp_sda (touch i2c data) |
-| 5  | BCM3 (SCL1)  | tp_scl (touch i2c clock) |
-| 7  | BCM4         | tp_int (touch interrupt) |
-| 11 | BCM17        | tp_rst (touch reset) |
+| pi_pin | pi_bcm | accessory_pin | accessory_pin_id |
+|-------:|--------|---------------|-----------------:|
+| 17 | 3V3          | vcc (v3.3)                                         | 1  |
+| —  | — (not connected) | 3v3 (on-module regulator output)                   | 2  |
+| 25 | GND          | gnd                                                | 3  |
+| 21 | BCM9 (MISO)  | miso (spi miso)                                    | 4  |
+| 19 | BCM10 (MOSI) | mosi (spi data in)                                 | 5  |
+| 23 | BCM11 (SCLK) | sclk (spi clock)                                   | 6  |
+| —  | — (not connected) | sd_cs (on-module sd slot)                          | 7  |
+| 24 | BCM8 (CE0)   | lcd_cs (display chip select)                       | 8  |
+| 22 | BCM25        | lcd_dc (data/command)                              | 9  |
+| 13 | BCM27        | lcd_rst (display reset)                            | 10 |
+| 32 | BCM12        | lcd_bl (backlight) — remapped from BCM18, see note | 11 |
+| 3  | BCM2 (SDA1)  | tp_sda (touch i2c data)                            | 12 |
+| 5  | BCM3 (SCL1)  | tp_scl (touch i2c clock)                           | 13 |
+| 7  | BCM4         | tp_int (touch interrupt)                           | 14 |
+| 11 | BCM17        | tp_rst (touch reset)                               | 15 |
 
-> Not connected on the module: the second `VCC` pin and `SD_CS` (the on-module
-> micro-SD slot's chip select) — both listed as **NC** in the Waveshare table.
+> Accessory pins **2** (`3V3`, the on-module regulator output) and **7**
+> (`SD_CS`, the micro-SD slot's chip select) are left unconnected on this board
+> — both shown mapping to nothing above.
 >
 > 🔧 **Backlight remapped:** the Waveshare default wires `LCD_BL` to **BCM18**,
 > which is also `PCM_CLK` (I2S BCLK) used by the amplifier and microphone below.
@@ -78,6 +84,12 @@ Pin mapping follows the "Working with Raspberry Pi" table on the
 > **BCM12 (pin 32)** — a hardware-PWM-capable pin — freeing BCM18 for I2S.
 > This requires routing `LCD_BL` to pin 32 on the PCB (not pin 12) and setting
 > the backlight GPIO to BCM12 in software.
+
+### PCB Connector
+
+JST GH1.25 15p
+
+![JST GH1.25 15-pin connector (shown on the Waveshare module)](images/jst-gh-15p-connector.jpg)
 
 ✅ **Verified**
 
@@ -99,6 +111,12 @@ female socket (per board requirements). Speaker connects to its output.
 > `GAIN` and `SD` (shutdown/channel-select) pins are set on the module/board
 > (not driven by the Pi). Default: `GAIN` floating (+9 dB), `SD` pulled to
 > enable stereo-averaged mono output.
+
+### PCB Connector
+
+2.54mm 7pin socket
+
+![2.54 mm 1×7 female header socket](images/socket-2.54mm-7pin.jpg)
 
 ✅ **Verified**
 
