@@ -56,6 +56,8 @@ The `accessory_pin_id` numbering follows the module's
 [pinout diagram](https://www.waveshare.com/img/devkit/LCD/2inch-Capacitive-Touch-LCD/2inch-Capacitive-Touch-LCD-details-9.jpg)
 (the 15-pin header).
 
+![Waveshare 2" Capacitive Touch LCD pinout (15-pin header)](images/waveshare-2inch-lcd-pinout.jpg)
+
 | pi_pin | pi_bcm | accessory_pin | accessory_pin_id |
 |-------:|--------|---------------|-----------------:|
 | 17 | 3V3          | vcc (v3.3)                                         | 1  |
@@ -100,17 +102,25 @@ JST GH1.25 15p
 Receives audio from the Pi over the I2S/PCM bus. Mounted on the PCB via a
 female socket (per board requirements). Speaker connects to its output.
 
-| pi_pin | pi_bcm | accessory_pin |
-|-------:|--------|---------------|
-| 2  | 5V            | vin (5v)            |
-| 6  | GND           | gnd                 |
-| 12 | BCM18 (PCM_CLK) | bclk (bit clock)  |
-| 35 | BCM19 (PCM_FS)  | lrc (lr / word clock) |
-| 40 | BCM21 (PCM_DOUT)| din (i2s data in) |
+![MAX98357A I2S Class-D mono amplifier module](images/max98357a-amplifier.jpg)
 
-> `GAIN` and `SD` (shutdown/channel-select) pins are set on the module/board
-> (not driven by the Pi). Default: `GAIN` floating (+9 dB), `SD` pulled to
-> enable stereo-averaged mono output.
+The `accessory_pin_id` numbering follows the module's 1×7 header order
+(`LRC`, `BCLK`, `DIN`, `GAIN`, `SD`, `GND`, `VIN`).
+
+| pi_pin | pi_bcm | accessory_pin | accessory_pin_id |
+|-------:|--------|---------------|-----------------:|
+| 35 | BCM19 (PCM_FS)  | lrc (lr / word clock)              | 1 |
+| 12 | BCM18 (PCM_CLK) | bclk (bit clock)                   | 2 |
+| 40 | BCM21 (PCM_DOUT)| din (i2s data in)                  | 3 |
+| —  | — (not connected) | gain (gain select)               | 4 |
+| —  | — (not connected) | sd (shutdown / channel select)   | 5 |
+| 6  | GND           | gnd                                  | 6 |
+| 2  | 5V            | vin (5v)                             | 7 |
+
+> Accessory pins **4** (`GAIN`) and **5** (`SD`, shutdown/channel-select) are
+> set on the module/board (not driven by the Pi) — both shown mapping to
+> nothing above. Default: `GAIN` floating (+9 dB), `SD` pulled to enable
+> stereo-averaged mono output.
 
 ### PCB Connector
 
@@ -127,15 +137,46 @@ female socket (per board requirements). Speaker connects to its output.
 Sends audio to the Pi over the same I2S/PCM bus (shares BCLK and LRCLK with
 the amplifier; uses the PCM data-in line). Connects via a board header.
 
-| pi_pin | pi_bcm | accessory_pin |
-|-------:|--------|---------------|
-| 1  | 3V3            | vdd (v3.3)         |
-| 9  | GND            | gnd                |
-| 12 | BCM18 (PCM_CLK)| sck (bit clock)    |
-| 35 | BCM19 (PCM_FS) | ws (word select)   |
-| 38 | BCM20 (PCM_DIN)| sd (i2s data out)  |
+![INMP441 I2S MEMS microphone module](images/inmp441-microphone.jpg)
 
-> `L/R` channel-select pin is tied to `gnd` on the board (left channel).
+The `accessory_pin_id` numbering follows the module's two 3-pin headers,
+left-to-right: header 1 is `SD`, `VDD`, `GND`; header 2 is `L/R`, `WS`, `SCK`.
+
+| pi_pin | pi_bcm | accessory_pin | accessory_pin_id |
+|-------:|--------|---------------|-----------------:|
+| 38 | BCM20 (PCM_DIN)| sd (i2s data out)                   | 1 |
+| 1  | 3V3            | vdd (v3.3)                          | 2 |
+| 9  | GND            | gnd                                 | 3 |
+| —  | — (tied to gnd)| l/r (channel select → gnd = left)   | 4 |
+| 35 | BCM19 (PCM_FS) | ws (word select)                    | 5 |
+| 12 | BCM18 (PCM_CLK)| sck (bit clock)                     | 6 |
+
+> Accessory pin **4** (`L/R`) is tied to `gnd` on the board (left channel),
+> not driven by the Pi — shown mapping to nothing above.
+
+### PCB Connector
+
+2.54mm 1×3 male pin header (×2)
+
+Two 2.54mm 1×3 male pin headers. The six accessory pins are split across the
+two headers in `accessory_pin_id` order — pins 1–3 on the first header, pins
+4–6 on the second. Pin order below is left-to-right, matching the module.
+
+![2.54 mm 1×3 male pin header](images/male-header-2.54mm-3pin.jpg)
+
+```
+Header A (1×3 male)          Header B (1×3 male)
+┌───┬───┬───┐                ┌───┬───┬───┐
+│ ▯ │ ▯ │ ▯ │                │ ▯ │ ▯ │ ▯ │
+└───┴───┴───┘                └───┴───┴───┘
+  1   2   3                    4   5   6
+ sd  vdd gnd                 l/r  ws  sck
+```
+
+| header | pins (left-to-right) | accessory_pin_id |
+|--------|----------------------|------------------|
+| A | sd, vdd, gnd  | 1, 2, 3 |
+| B | l/r, ws, sck  | 4, 5, 6 |
 
 ✅ **Verified**
 
