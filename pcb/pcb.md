@@ -1,4 +1,4 @@
-# PiTalk PCB (pcb2) — Pin Connections
+# PiTalk PCB — Pin Connections
 
 This document defines the electrical pin mapping for the PiTalk carrier PCB,
 designed from scratch around the **Raspberry Pi Zero 2W** 40-pin header.
