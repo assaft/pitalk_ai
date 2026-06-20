@@ -147,17 +147,16 @@ left-to-right: header 1 is `SD`, `VDD`, `GND`; header 2 is `L/R`, `WS`, `SCK`.
 | 38 | BCM20 (PCM_DIN)| sd (i2s data out)                   | 1 |
 | 1  | 3V3            | vdd (v3.3)                          | 2 |
 | 9  | GND            | gnd                                 | 3 |
-| —  | — (tied to gnd)| l/r (channel select → gnd = left)   | 4 |
+| 14 | GND            | l/r (channel select → gnd = left)   | 4 |
 | 35 | BCM19 (PCM_FS) | ws (word select)                    | 5 |
 | 12 | BCM18 (PCM_CLK)| sck (bit clock)                     | 6 |
 
 > Accessory pin **4** (`L/R`) is a static channel-select input, not a signal
-> the Pi drives — tying it to `gnd` selects the left channel. Make this tie on
-> the **PCB**, not on the mic module: in the KiCad schematic, connect the
-> `L/R` pin to a `GND` power symbol (same net as the mic's own `gnd`), then let
-> the board's ground pour realize it in copper. The mic module solders onto the
-> headers straight through, unmodified — do **not** short `L/R` to `gnd` on the
-> module. Shown mapping to nothing above because no Pi pin is involved.
+> the Pi drives — tying it to `gnd` selects the left channel. Here it is wired
+> to the Pi's **GND on pin 14** (a dedicated ground pin, separate from the mic's
+> own `gnd` on pin 9). The mic module solders onto the headers straight through,
+> unmodified — do **not** short `L/R` to `gnd` on the module; the tie is made
+> through the header to the Pi ground pin.
 
 ### PCB Connector
 
@@ -256,6 +255,7 @@ single pin. (BCM18/BCM19 are genuine shared signal nets and stay on one pin.)
 | 11 | BCM17           | tp_rst   | —    | —    | —      |
 | 12 | BCM18 (PCM_CLK) | —        | bclk | sck  | —      |
 | 13 | BCM27           | lcd_rst  | —    | —    | —      |
+| 14 | GND             | —        | —    | l/r  | —      |
 | 15 | BCM22           | —        | —    | —    | sw     |
 | 17 | 3V3             | vcc      | —    | —    | —      |
 | 19 | BCM10 (MOSI)    | mosi     | —    | —    | —      |
@@ -273,7 +273,7 @@ single pin. (BCM18/BCM19 are genuine shared signal nets and stay on one pin.)
 | 40 | BCM21 (PCM_DOUT)| —        | din  | —    | —      |
 
 > **Unused header pins** (not connected on this board):
-> 4 (5V), 8 (BCM14/TXD), 10 (BCM15/RXD), 14 (GND), 16 (BCM23), 18 (BCM24),
+> 4 (5V), 8 (BCM14/TXD), 10 (BCM15/RXD), 16 (BCM23), 18 (BCM24),
 > 20 (GND), 26 (BCM7/CE1), 27 (BCM0/ID_SD), 28 (BCM1/ID_SC), 29 (BCM5),
 > 30 (GND), 31 (BCM6), 36 (BCM16), 37 (BCM26).
 
