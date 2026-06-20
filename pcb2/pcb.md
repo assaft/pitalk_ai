@@ -208,6 +208,24 @@ series current-limiting resistor.
 | 33 | BCM13 | led+ (via series resistor) |
 | 39 | GND   | led- (led cathode)       |
 
+### PCB Connector
+
+2.54mm 1×4 male pin header
+
+A single 2.54mm 1×4 male pin header carries all four button signals,
+left-to-right: `sw`, `sw_gnd`, `led+`, `led-`.
+
+![2.54 mm 1×4 male pin header](images/male-header-2.54mm-4pin.jpg)
+
+```
+1×4 male header
+┌────┬────────┬──────┬──────┐
+│ ▯  │   ▯    │  ▯   │  ▯   │
+└────┴────────┴──────┴──────┘
+  1       2       3      4
+  sw    sw_gnd   led+   led-
+```
+
 ---
 
 ## Full wiring
@@ -255,3 +273,21 @@ single pin. (BCM18/BCM19 are genuine shared signal nets and stay on one pin.)
 > 30 (GND), 31 (BCM6), 36 (BCM16), 37 (BCM26).
 
 ✅ **Verified**
+
+---
+
+## PCB Board
+
+The carrier PCB must provide the following connectors, one per interface
+(detailed in each accessory section above):
+
+| # | Interface | Connector | Pins |
+|--:|-----------|-----------|-----:|
+| 1 | Raspberry Pi Zero 2W | 2×20 2.54mm female header (mounts onto the Pi 40-pin header) | 40 |
+| 2 | Display (Waveshare 2" Touch) | JST GH1.25 1×15 | 15 |
+| 3 | Amplifier (MAX98357A) | 2.54mm 1×7 female socket | 7 |
+| 4 | Microphone (INMP441) | 2.54mm 1×3 male pin header (×2) | 3 + 3 |
+| 5 | Button (push button + LED) | 2.54mm 1×4 male pin header | 4 |
+
+> The speaker is **not** a PCB connector — it wires directly to the
+> amplifier's output (see the Speaker section), not to the carrier board.
