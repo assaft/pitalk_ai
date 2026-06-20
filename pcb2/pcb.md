@@ -151,8 +151,13 @@ left-to-right: header 1 is `SD`, `VDD`, `GND`; header 2 is `L/R`, `WS`, `SCK`.
 | 35 | BCM19 (PCM_FS) | ws (word select)                    | 5 |
 | 12 | BCM18 (PCM_CLK)| sck (bit clock)                     | 6 |
 
-> Accessory pin **4** (`L/R`) is tied to `gnd` on the board (left channel),
-> not driven by the Pi — shown mapping to nothing above.
+> Accessory pin **4** (`L/R`) is a static channel-select input, not a signal
+> the Pi drives — tying it to `gnd` selects the left channel. Make this tie on
+> the **PCB**, not on the mic module: in the KiCad schematic, connect the
+> `L/R` pin to a `GND` power symbol (same net as the mic's own `gnd`), then let
+> the board's ground pour realize it in copper. The mic module solders onto the
+> headers straight through, unmodified — do **not** short `L/R` to `gnd` on the
+> module. Shown mapping to nothing above because no Pi pin is involved.
 
 ### PCB Connector
 
