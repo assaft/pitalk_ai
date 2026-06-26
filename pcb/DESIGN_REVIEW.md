@@ -1,6 +1,7 @@
 # PiTalk PCB — Independent Verification Report
 
-**Reviewer pass date:** 2026-06-27 (second pass — re-verification after the
+**Reviewer pass date:** 2026-06-27 (third pass — re-verification after the
+fabrication-output regeneration, commit `b4b90ed`; second pass covered the
 silkscreen-label update, commit `3b99e36`)
 **Scope:** schematic, netlist, PCB, DRC/ERC, layout, datasheet pinouts,
 connector silkscreen.
@@ -19,18 +20,16 @@ this directly:
   from the first pass therefore still holds without re-litigation — the
   I2S/backlight pin-conflict resolution, C1 polarity, no double-driven pins, and
   the NC list are all still correct.
-- **The 20 new silkscreen labels are all correct** (new §4 below).
-- **One genuinely new issue surfaced** that is *different* from the first pass:
-  the In1.Cu GND pour is now saved **unfilled**, and the committed
-  `fabrication/` gerbers are **stale** (Finding #5). This is a
-  manufacturing-artifact regression, not an electrical-design change — the
-  design itself is still sound.
+- **The 20 new silkscreen labels are all correct** (§4 below).
+- **The fabrication-output staleness (Finding #5) is now resolved** by commit
+  `b4b90ed`. All of `kicad/fabrication/` plus `board-statistics.rpt`/`drc.json`
+  were regenerated (dated 2026-06-27 01:26–01:27) from the current board, and
+  re-verified this pass (§5 below).
 
 **Net answer to "is the result any different than before?"** The electrical
-verdict is unchanged (still sound). What is new: the board is now better
-documented for assembly (correct pin labels), but the saved zone fill and the
-exported fab outputs are out of date and must be regenerated before
-manufacturing.
+verdict is unchanged (still sound). The board is now better documented for
+assembly (correct pin labels) **and** the fabrication outputs are now current
+and consistent with the source — Finding #5 is closed.
 
 ## Methodology
 
@@ -120,6 +119,37 @@ placement:**
   board ties it to ground. That is electrically accurate; just be aware the
   module's own pin marking there reads `L/R`, not `GND`, when orienting the part.
 
+## 5. Fabrication outputs — regenerated and re-verified ✅
+
+After Finding #5 was raised, commit `b4b90ed` regenerated the full output set.
+Independently confirmed against the current board:
+
+- **All `kicad/fabrication/` files re-dated 2026-06-27 01:26**, plus
+  `drc.json` (01:27) and `board-statistics.rpt` (01:27) — no longer stale.
+- **In1.Cu GND plane is filled in the gerber** (`pitalk-In1_Cu.g1` contains a
+  closed `G36…G37` copper region, ~92 kB). Even though the saved
+  `.kicad_pcb` still caches the zone unfilled (`filled_polygon` = 0), KiCad
+  fills zones on plot, so the *exported* plane is correct and complete — the
+  load-bearing GND pour reaches the through-hole pads as required.
+- **New silkscreen labels are in the gerber:** `pitalk-F_Silkscreen.gto` grew
+  16 kB → 47 kB; `B_Silkscreen` remains ~empty, confirming all 20 labels are
+  front-side only (not mirrored to the back).
+- **Job/spec consistent:** `pitalk-job.gbrjob` is KiCad/Pcbnew, dated
+  2026-06-27 01:26, 76.15 × 58.15 mm (board + plot margin), 4-layer, 1.6 mm,
+  ENIG.
+- **Counts reconcile with the design:** statistics report 76 × 58 mm, 61 THT +
+  17 SMD + 4 NPTH pads; DRC re-run is clean (0 violations, 0 unconnected,
+  0 parity).
+- `pitalk.ipc` is now a full **IPC-2581 rev C** export (all layers + BOM/AVL),
+  which is why it grew from ~7 kB to ~720 kB — a richer interchange format, not
+  a defect.
+
+**Residual (latent, low-risk):** the editable `.kicad_pcb` still saves the zone
+unfilled because `build.py`/`kiutils` writes only the zone outline. The
+committed gerbers are correct, but if anyone re-plots **from the GUI** they
+should *Fill All Zones* (`B`) first; a `kicad-cli`/`build.py` re-export fills
+automatically.
+
 ---
 
 ## Findings
@@ -156,29 +186,19 @@ Speaker section now states the speaker wires directly to the amplifier module's
 Acceptable: the Pi has fixed 1.8 kΩ pull-ups on BCM2/3, and the accessory
 modules carry their own local decoupling. Noted for completeness.
 
-**🟡 5 — NEW — ACTION REQUIRED — GND pour saved unfilled & stale fab outputs.**
-The silkscreen rebuild regenerated the board through `build.py`/`kiutils`, which
-writes the zone *outline* but does not compute the copper *fill*. As a result:
+**🟢 5 — RESOLVED — GND pour fill & stale fab outputs.**
+*Raised on the second pass:* the silkscreen rebuild left the In1.Cu GND pour
+saved **unfilled** and the committed `fabrication/` gerbers were **stale**
+(Jun 24, pre-label). This mattered because the GND pour is **load-bearing** —
+there are **zero GND stitching vias**, so through-hole GND pads depend on the
+pour reaching them (plus 35 surface GND segments).
 
-- The current `pitalk.kicad_pcb` has the In1.Cu GND zone **unfilled** (no cached
-  `filled_polygon`), whereas the previously-reviewed board (`720910e`) had it
-  filled. This GND pour is **load-bearing**: there are **zero GND stitching
-  vias**, so every through-hole GND pad depends on the In1.Cu pour reaching it
-  (plus 35 surface GND track segments). Connectivity still verifies (DRC: 0
-  unconnected, 0 parity) **only because KiCad auto-fills zones during DRC/plot** —
-  the saved file's empty fill is a caching artifact, not a broken net.
-- The committed `kicad/fabrication/` gerbers are dated **Jun 24** — they predate
-  the silkscreen labels entirely, so the exported `F_Silkscreen` does **not**
-  contain the new pin labels, and `board-statistics.rpt`/`erc.json` are likewise
-  from the pre-label board.
-
-**Action before manufacturing:** open the board in KiCad and *Fill All Zones*
-(`B`), then **regenerate the full `fabrication/` set** (gerbers, drill,
-statistics) from the current PCB. A `kicad-cli pcb export gerbers` run fills
-zones automatically, so a fresh export will produce a correct, filled In1.Cu
-plane *and* the new silkscreen — but do not ship the gerbers currently in the
-repo. No schematic/PCB *design* change is needed; this is purely an
-artifact-refresh gate.
+*Resolved by commit `b4b90ed`:* the entire output set was regenerated from the
+current board and re-verified (§5 above) — the In1.Cu gerber carries a filled
+copper region, `F_Silkscreen` now includes the 20 labels, and DRC/statistics
+are current and clean. **Latent caveat retained:** the editable `.kicad_pcb`
+still saves the zone unfilled, so a *GUI* re-plot needs *Fill All Zones* (`B`)
+first; CLI/`build.py` exports fill automatically.
 
 ## Remaining manufacturing gates (cannot be closed from CAD)
 
@@ -203,10 +223,12 @@ schematic and netlist are unchanged from the first pass, so that verdict carries
 over directly. The new connector silkscreen (20 labels) is **fully correct** in
 name, net, side, and placement, and improves assembly safety.
 
-**One new item is different from before and must be actioned before fab
-(Finding #5):** the regenerated board saves the In1.Cu GND pour unfilled and the
-committed `fabrication/` gerbers are stale (pre-label). Neither breaks the
-design — fill zones and re-export the fabrication set from the current PCB. The
-earlier physical mating/fit gates (cable orientation, module footprints, C1
-rating, supply budget, fab DFM, first-article bring-up) still stand — none of
-which can be closed from CAD files alone.
+**Finding #5 (raised last pass) is now closed:** the fabrication outputs were
+regenerated from the current board and independently re-verified — the In1.Cu
+gerber carries a filled GND plane, the new silkscreen labels are in
+`F_Silkscreen`, and DRC/statistics are current and clean. The only remaining
+items are the physical mating/fit gates (cable orientation, module footprints,
+C1 rating, supply budget, fab DFM, first-article bring-up) — none of which can
+be closed from CAD files alone — and a latent reminder to *Fill All Zones*
+before any **manual GUI** gerber re-plot. The design and its fabrication set are
+suitable for prototype fabrication.
