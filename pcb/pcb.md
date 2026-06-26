@@ -121,10 +121,35 @@ The `accessory_pin_id` numbering follows the module's 1×7 header order
 
 ![Raspberry Pi 40-pin GPIO header showing amplifier pins in red](images/gpio-amplifier.svg)
 
+The module's back-side silkscreen documents its onboard defaults:
+
+![MAX98357A module back silkscreen showing gain and output defaults](images/max98357a-gain-sd-defaults.jpg)
+
+> ```
+> 4-8Ω 3W
+> MAX98357A
+> I2S Mono Amp.
+> Vin: 2.5-5.5V
+> Default 9db Gain
+> & (L+R)/2 out
+> ```
+
 > Accessory pins **4** (`GAIN`) and **5** (`SD`, shutdown/channel-select) are
-> set on the module/board (not driven by the Pi) — both shown mapping to
-> nothing above. Default: `GAIN` floating (+9 dB), `SD` pulled to enable
-> stereo-averaged mono output.
+> set by the module's onboard resistors (not driven by the Pi) — both shown
+> mapping to nothing above, and both left unconnected on this carrier.
+>
+> The module's silkscreen confirms its as-shipped defaults with these pins
+> unconnected:
+> - **`GAIN` left floating → +9 dB gain.**
+> - **`SD` held by the onboard pull at the level that both enables the amplifier
+>   and selects `(L+R)/2` stereo-averaged mono output.** Because the breakout
+>   actively pulls `SD` to an enabled state, leaving it unconnected does **not**
+>   shut the amplifier down — the chip powers up enabled in mono.
+>
+> This is why pins 4 and 5 are safe to leave unconnected on the PCB: the
+> purchased module already sets them. (Verify the actual board carries these
+> pulls — bare MAX98357A clones without the `SD` pull would otherwise stay in
+> shutdown.)
 
 ### PCB Connector
 
@@ -194,8 +219,9 @@ Header A (1×3 male)          Header B (1×3 male)
 
 ## Speaker — Gikfun 2" 4Ω 3W
 
-The speaker does **not** connect to the Pi header. It connects to the
-amplifier's bridge-tied output via a 2-pin board connector.
+The speaker does **not** connect to the Pi header, and it is **not** a carrier
+PCB connector. It wires directly to the amplifier module's bridge-tied output
+terminals (`OUT+`/`OUT-`) on the MAX98357A board itself.
 
 | amp_pin | accessory_pin |
 |---------|---------------|
@@ -250,6 +276,10 @@ the specific pins used.
 Rows are one physical pin each. Where an accessory shares a rail (3V3, GND),
 a separate header pin is allocated per accessory so every connection maps to a
 single pin. (BCM18/BCM19 are genuine shared signal nets and stay on one pin.)
+In addition to the per-accessory GND pins, **all remaining Pi ground pins
+(20 and 30) are also tied to the board GND plane** — they carry no accessory
+signal but provide extra ground returns. They appear below as GND rows with
+`—` in every accessory column.
 
 ![Raspberry Pi 40-pin GPIO header colored by connected component, with shared pins split between colors](images/gpio-full-wiring.svg)
 
@@ -269,11 +299,13 @@ single pin. (BCM18/BCM19 are genuine shared signal nets and stay on one pin.)
 | 15 | BCM22           | —        | —    | —    | sw     |
 | 17 | 3V3             | vcc      | —    | —    | —      |
 | 19 | BCM10 (MOSI)    | mosi     | —    | —    | —      |
+| 20 | GND             | —        | —    | —    | —      |
 | 21 | BCM9 (MISO)     | miso     | —    | —    | —      |
 | 22 | BCM25           | lcd_dc   | —    | —    | —      |
 | 23 | BCM11 (SCLK)    | sclk     | —    | —    | —      |
 | 24 | BCM8 (CE0)      | lcd_cs   | —    | —    | —      |
 | 25 | GND             | gnd      | —    | —    | —      |
+| 30 | GND             | —        | —    | —    | —      |
 | 32 | BCM12           | lcd_bl   | —    | —    | —      |
 | 33 | BCM13           | —        | —    | —    | led+   |
 | 34 | GND             | —        | —    | —    | sw_gnd |
@@ -284,8 +316,11 @@ single pin. (BCM18/BCM19 are genuine shared signal nets and stay on one pin.)
 
 > **Unused header pins** (not connected on this board):
 > 4 (5V), 8 (BCM14/TXD), 10 (BCM15/RXD), 16 (BCM23), 18 (BCM24),
-> 20 (GND), 26 (BCM7/CE1), 27 (BCM0/ID_SD), 28 (BCM1/ID_SC), 29 (BCM5),
-> 30 (GND), 31 (BCM6), 36 (BCM16), 37 (BCM26).
+> 26 (BCM7/CE1), 27 (BCM0/ID_SD), 28 (BCM1/ID_SC), 29 (BCM5),
+> 31 (BCM6), 36 (BCM16), 37 (BCM26).
+>
+> All eight Pi ground pins (6, 9, 14, 20, 25, 30, 34, 39) are tied to the
+> board GND plane.
 
 ✅ **Verified**
 
