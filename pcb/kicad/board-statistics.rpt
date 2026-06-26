@@ -1,6 +1,6 @@
 PCB statistics report
 =====================
-- Date: Wednesday, June 24, 2026 at 01:36:39 AM
+- Date: Saturday, June 27, 2026 at 01:27:14 AM
 - Project: pitalk
 - Board name: pitalk
 
@@ -53,5 +53,5 @@ Drill holes
 |-------|-------|-----------|-----------|--------|---------|-------------|------------|
 |    57 | Round | 1.0000 mm | 1.0000 mm |    PTH |     Pad |        F.Cu |       B.Cu |
 |    14 | Round | 0.3000 mm | 0.3000 mm |    PTH |     Via |        F.Cu |       B.Cu |
-|     4 | Round | 3.2000 mm | 3.2000 mm |   NPTH |     Pad |        F.Cu |       B.Cu |
 |     4 | Round | 0.8000 mm | 0.8000 mm |    PTH |     Pad |        F.Cu |       B.Cu |
+|     4 | Round | 3.2000 mm | 3.2000 mm |   NPTH |     Pad |        F.Cu |       B.Cu |
