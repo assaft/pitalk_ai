@@ -39,7 +39,8 @@ Using the touch screen, user A can initiate a recording of a message to a partic
 * The bottom should be openable using screws, giving access to all components inside.
 * The raspberry pi should be attached on one of the sides to allow easy access to the screen, speaker, microphone and button.
 * A custom PCB board should be used to simplify connectivity and maintenance
-* The PCB should connect to the Raspberry PI using an IDC ribbon cable and shrouded 2×20 male headers.
+* The PCB should connect to the Raspberry Pi GPIO interface using a
+  2×20 male pin header.
 
 ## PCB Board requirements
 * The board should not include the amplifier - it should include a female socket for the amplifier to be connected to it using a male header that was soldered to it. 
@@ -128,18 +129,34 @@ USB-C on the bottom edge (side of box). Button centered below screen, mic to its
 
 # PCB Design
 
-Board: **65 mm × 55 mm**, 2-layer FR4, generated as KiCad 7 project in `pcb/`.
-Run `python3 tools/generate_kicad.py` to regenerate all three KiCad files.
+Board: **76 mm × 58 mm**, four-layer, 1.6 mm FR4:
+
+1. `F.Cu` — connector escapes and signals
+2. `In1.Cu` — continuous ground plane
+3. `In2.Cu` — secondary signal routing
+4. `B.Cu` — signals and power
+
+The authoritative wiring specification is [`pcb/pcb.md`](pcb/pcb.md). The
+KiCad board is [`pcb/kicad/pitalk.kicad_pcb`](pcb/kicad/pitalk.kicad_pcb).
+The matching schematic is
+[`pcb/kicad/pitalk.kicad_sch`](pcb/kicad/pitalk.kicad_sch).
+
+Regenerate it with:
+
+```sh
+.venv/bin/python pcb/kicad/build.py
+.venv/bin/python pcb/kicad/build_schematic.py
+```
 
 ## Connectors
 
 | Ref | Footprint | Function |
 |-----|-----------|----------|
-| J1 | IDC-Header 2×20, 2.54 mm (shrouded) | Raspberry Pi GPIO — connects via IDC ribbon cable |
-| J2 | Molex KK-254 1×15, 2.54 mm (keyed/locking) | Waveshare 2" touch display |
-| J3 | PinHeader 2×3, 2.54 mm (male) | INMP441 microphone |
-| J4 | PinSocket 1×7, 2.54 mm (female) | MAX98357A amplifier module (external) |
-| J5 | PinHeader 1×4, 2.54 mm (male) | Momentary button + LED |
+| J1 | 2×20 2.54 mm male pin header | Raspberry Pi Zero 2W GPIO |
+| J2 | JST GH SM15B 1.25 mm 1×15 male side-entry header | Waveshare 2" touch display |
+| J3 | 1×7 2.54 mm female socket | MAX98357A amplifier module |
+| J4, J5 | 1×3 2.54 mm male headers | INMP441 microphone |
+| J6 | 1×4 2.54 mm male header | Momentary button + LED |
 
 ## GPIO Assignments (Raspberry Pi Zero 2W)
 

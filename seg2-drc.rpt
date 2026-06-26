@@ -1,0 +1,24 @@
+** Drc report for seg2.kicad_pcb **
+** Created on 2026-06-21T02:27:08 **
+** Report includes: Errors, Warnings **
+
+** Found 2 DRC violations **
+[invalid_outline]: Board has malformed outline (no edges found on Edge.Cuts layer)
+    Local override; error
+    @(0.0000 mm, 0.0000 mm): PCB
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(5.0000 mm, 5.0000 mm): Track [GND] on F.Cu, length 15.0000 mm
+
+** Found 0 unconnected pads **
+
+** Found 0 Footprint errors **
+
+** Ignored checks **
+    - Footprint has no courtyard defined
+    - Track endpoint not centered on via
+    - Tuning profile track geometries
+    - Footprint doesn't match symbol's footprint filters
+    - Footprint component type doesn't match footprint pads
+
+** End of Report **

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="835" viewBox="0 0 520 835" role="img" aria-labelledby="title description">
+  <title id="title">Full Raspberry Pi GPIO wiring</title>
+  <desc id="description">Raspberry Pi 40-pin header colored by connected component. Shared amplifier and microphone pins are split red and green.</desc>
+  <style>
+    .title { font: 700 24px Arial, sans-serif; fill: #111; }
+    .subtitle { font: 14px Arial, sans-serif; fill: #444; }
+    .pin-number { font: 700 9px Arial, sans-serif; fill: white; }
+    .side-number { font: 12px Arial, sans-serif; fill: #333; }
+    .legend { font: 13px Arial, sans-serif; fill: #222; }
+  </style>
+  <rect width="520" height="835" fill="white"/>
+  <text x="260.0" y="35" class="title" text-anchor="middle">Full GPIO wiring</text>
+  <text x="260.0" y="60" class="subtitle" text-anchor="middle">Raspberry Pi Zero 2W — physical pin numbers</text>
+  <rect x="175" y="88" width="170" height="620" rx="14" fill="#ededed" stroke="#777" stroke-width="2"/>
+  
+    <circle cx="205" cy="115" r="12" fill="#1b8f3a"/>
+    <text x="205" y="119" class="pin-number" text-anchor="middle">1</text>
+    <text x="174" y="120" class="side-number" text-anchor="end">1</text>
+    <circle cx="315" cy="115" r="12" fill="#d7191c"/>
+    <text x="315" y="119" class="pin-number" text-anchor="middle">2</text>
+    <text x="346" y="120" class="side-number" text-anchor="start">2</text>
+    <circle cx="205" cy="146" r="12" fill="#1976d2"/>
+    <text x="205" y="150" class="pin-number" text-anchor="middle">3</text>
+    <text x="174" y="151" class="side-number" text-anchor="end">3</text>
+    <circle cx="315" cy="146" r="12" fill="#111111"/>
+    <text x="315" y="150" class="pin-number" text-anchor="middle">4</text>
+    <text x="346" y="151" class="side-number" text-anchor="start">4</text>
+    <circle cx="205" cy="177" r="12" fill="#1976d2"/>
+    <text x="205" y="181" class="pin-number" text-anchor="middle">5</text>
+    <text x="174" y="182" class="side-number" text-anchor="end">5</text>
+    <circle cx="315" cy="177" r="12" fill="#d7191c"/>
+    <text x="315" y="181" class="pin-number" text-anchor="middle">6</text>
+    <text x="346" y="182" class="side-number" text-anchor="start">6</text>
+    <circle cx="205" cy="208" r="12" fill="#1976d2"/>
+    <text x="205" y="212" class="pin-number" text-anchor="middle">7</text>
+    <text x="174" y="213" class="side-number" text-anchor="end">7</text>
+    <circle cx="315" cy="208" r="12" fill="#111111"/>
+    <text x="315" y="212" class="pin-number" text-anchor="middle">8</text>
+    <text x="346" y="213" class="side-number" text-anchor="start">8</text>
+    <circle cx="205" cy="239" r="12" fill="#1b8f3a"/>
+    <text x="205" y="243" class="pin-number" text-anchor="middle">9</text>
+    <text x="174" y="244" class="side-number" text-anchor="end">9</text>
+    <circle cx="315" cy="239" r="12" fill="#111111"/>
+    <text x="315" y="243" class="pin-number" text-anchor="middle">10</text>
+    <text x="346" y="244" class="side-number" text-anchor="start">10</text>
+    <circle cx="205" cy="270" r="12" fill="#1976d2"/>
+    <text x="205" y="274" class="pin-number" text-anchor="middle">11</text>
+    <text x="174" y="275" class="side-number" text-anchor="end">11</text>
+    <path d="M 315 258 A 12 12 0 0 0 315 282 Z" fill="#d7191c"/>
+    <path d="M 315 258 A 12 12 0 0 1 315 282 Z" fill="#1b8f3a"/>
+    <text x="315" y="274" class="pin-number" text-anchor="middle">12</text>
+    <text x="346" y="275" class="side-number" text-anchor="start">12</text>
+    <circle cx="205" cy="301" r="12" fill="#1976d2"/>
+    <text x="205" y="305" class="pin-number" text-anchor="middle">13</text>
+    <text x="174" y="306" class="side-number" text-anchor="end">13</text>
+    <circle cx="315" cy="301" r="12" fill="#1b8f3a"/>
+    <text x="315" y="305" class="pin-number" text-anchor="middle">14</text>
+    <text x="346" y="306" class="side-number" text-anchor="start">14</text>
+    <circle cx="205" cy="332" r="12" fill="#f28c00"/>
+    <text x="205" y="336" class="pin-number" text-anchor="middle">15</text>
+    <text x="174" y="337" class="side-number" text-anchor="end">15</text>
+    <circle cx="315" cy="332" r="12" fill="#111111"/>
+    <text x="315" y="336" class="pin-number" text-anchor="middle">16</text>
+    <text x="346" y="337" class="side-number" text-anchor="start">16</text>
+    <circle cx="205" cy="363" r="12" fill="#1976d2"/>
+    <text x="205" y="367" class="pin-number" text-anchor="middle">17</text>
+    <text x="174" y="368" class="side-number" text-anchor="end">17</text>
+    <circle cx="315" cy="363" r="12" fill="#111111"/>
+    <text x="315" y="367" class="pin-number" text-anchor="middle">18</text>
+    <text x="346" y="368" class="side-number" text-anchor="start">18</text>
+    <circle cx="205" cy="394" r="12" fill="#1976d2"/>
+    <text x="205" y="398" class="pin-number" text-anchor="middle">19</text>
+    <text x="174" y="399" class="side-number" text-anchor="end">19</text>
+    <circle cx="315" cy="394" r="12" fill="#111111"/>
+    <text x="315" y="398" class="pin-number" text-anchor="middle">20</text>
+    <text x="346" y="399" class="side-number" text-anchor="start">20</text>
+    <circle cx="205" cy="425" r="12" fill="#1976d2"/>
+    <text x="205" y="429" class="pin-number" text-anchor="middle">21</text>
+    <text x="174" y="430" class="side-number" text-anchor="end">21</text>
+    <circle cx="315" cy="425" r="12" fill="#1976d2"/>
+    <text x="315" y="429" class="pin-number" text-anchor="middle">22</text>
+    <text x="346" y="430" class="side-number" text-anchor="start">22</text>
+    <circle cx="205" cy="456" r="12" fill="#1976d2"/>
+    <text x="205" y="460" class="pin-number" text-anchor="middle">23</text>
+    <text x="174" y="461" class="side-number" text-anchor="end">23</text>
+    <circle cx="315" cy="456" r="12" fill="#1976d2"/>
+    <text x="315" y="460" class="pin-number" text-anchor="middle">24</text>
+    <text x="346" y="461" class="side-number" text-anchor="start">24</text>
+    <circle cx="205" cy="487" r="12" fill="#1976d2"/>
+    <text x="205" y="491" class="pin-number" text-anchor="middle">25</text>
+    <text x="174" y="492" class="side-number" text-anchor="end">25</text>
+    <circle cx="315" cy="487" r="12" fill="#111111"/>
+    <text x="315" y="491" class="pin-number" text-anchor="middle">26</text>
+    <text x="346" y="492" class="side-number" text-anchor="start">26</text>
+    <circle cx="205" cy="518" r="12" fill="#111111"/>
+    <text x="205" y="522" class="pin-number" text-anchor="middle">27</text>
+    <text x="174" y="523" class="side-number" text-anchor="end">27</text>
+    <circle cx="315" cy="518" r="12" fill="#111111"/>
+    <text x="315" y="522" class="pin-number" text-anchor="middle">28</text>
+    <text x="346" y="523" class="side-number" text-anchor="start">28</text>
+    <circle cx="205" cy="549" r="12" fill="#111111"/>
+    <text x="205" y="553" class="pin-number" text-anchor="middle">29</text>
+    <text x="174" y="554" class="side-number" text-anchor="end">29</text>
+    <circle cx="315" cy="549" r="12" fill="#111111"/>
+    <text x="315" y="553" class="pin-number" text-anchor="middle">30</text>
+    <text x="346" y="554" class="side-number" text-anchor="start">30</text>
+    <circle cx="205" cy="580" r="12" fill="#111111"/>
+    <text x="205" y="584" class="pin-number" text-anchor="middle">31</text>
+    <text x="174" y="585" class="side-number" text-anchor="end">31</text>
+    <circle cx="315" cy="580" r="12" fill="#1976d2"/>
+    <text x="315" y="584" class="pin-number" text-anchor="middle">32</text>
+    <text x="346" y="585" class="side-number" text-anchor="start">32</text>
+    <circle cx="205" cy="611" r="12" fill="#f28c00"/>
+    <text x="205" y="615" class="pin-number" text-anchor="middle">33</text>
+    <text x="174" y="616" class="side-number" text-anchor="end">33</text>
+    <circle cx="315" cy="611" r="12" fill="#f28c00"/>
+    <text x="315" y="615" class="pin-number" text-anchor="middle">34</text>
+    <text x="346" y="616" class="side-number" text-anchor="start">34</text>
+    <path d="M 205 630 A 12 12 0 0 0 205 654 Z" fill="#d7191c"/>
+    <path d="M 205 630 A 12 12 0 0 1 205 654 Z" fill="#1b8f3a"/>
+    <text x="205" y="646" class="pin-number" text-anchor="middle">35</text>
+    <text x="174" y="647" class="side-number" text-anchor="end">35</text>
+    <circle cx="315" cy="642" r="12" fill="#111111"/>
+    <text x="315" y="646" class="pin-number" text-anchor="middle">36</text>
+    <text x="346" y="647" class="side-number" text-anchor="start">36</text>
+    <circle cx="205" cy="673" r="12" fill="#111111"/>
+    <text x="205" y="677" class="pin-number" text-anchor="middle">37</text>
+    <text x="174" y="678" class="side-number" text-anchor="end">37</text>
+    <circle cx="315" cy="673" r="12" fill="#1b8f3a"/>
+    <text x="315" y="677" class="pin-number" text-anchor="middle">38</text>
+    <text x="346" y="678" class="side-number" text-anchor="start">38</text>
+    <circle cx="205" cy="704" r="12" fill="#f28c00"/>
+    <text x="205" y="708" class="pin-number" text-anchor="middle">39</text>
+    <text x="174" y="709" class="side-number" text-anchor="end">39</text>
+    <circle cx="315" cy="704" r="12" fill="#d7191c"/>
+    <text x="315" y="708" class="pin-number" text-anchor="middle">40</text>
+    <text x="346" y="709" class="side-number" text-anchor="start">40</text>
+  <circle cx="55" cy="748" r="9" fill="#1976d2"/>
+  <text x="72" y="753" class="legend">Display</text>
+  <circle cx="205" cy="748" r="9" fill="#d7191c"/>
+  <text x="222" y="753" class="legend">Amplifier</text>
+  <circle cx="355" cy="748" r="9" fill="#1b8f3a"/>
+  <text x="372" y="753" class="legend">Microphone</text>
+  <circle cx="130" cy="785" r="9" fill="#f28c00"/>
+  <text x="147" y="790" class="legend">Button</text>
+  <circle cx="300" cy="785" r="9" fill="#111111"/>
+  <text x="317" y="790" class="legend">Unused</text>
+</svg>

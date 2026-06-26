@@ -3,6 +3,6 @@
 *.kicad_prl
 *.lck
 /pitalk_statistics.rpt
-pcb/.history/
+**/.history/
 pcb/.step
 pcb/*.step

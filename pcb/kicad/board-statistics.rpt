@@ -1,0 +1,57 @@
+PCB statistics report
+=====================
+- Date: Wednesday, June 24, 2026 at 01:36:39 AM
+- Project: pitalk
+- Board name: pitalk
+
+Board
+-----
+- Width: 76.0000 mm
+- Height: 58.0000 mm
+- Area: 4408.00 mm²
+- Front copper area: 356.577 mm²
+- Back copper area: 287.541 mm²
+- Min track clearance: 0.3850 mm
+- Min track width: 0.2500 mm
+- Min drill diameter: 0.3000 mm
+- Board stackup thickness: 1.6000 mm
+
+- Front footprint area: 829.252 mm²
+- Back footprint area: 242.197 mm²
+- Front component density: 18.81 %
+- Back component density: 5.49 %
+Pads
+----
+- Through hole: 61
+- SMD: 17
+- Connector: 0
+- NPTH: 4
+- Castellated: 0
+- Press-fit: 0
+
+Vias
+----
+- Through vias: 14
+- Blind vias: 0
+- Buried vias: 0
+- Micro vias: 0
+
+Components
+----------
+
+|              | Front Side | Back Side | Total |
+|--------------|------------|-----------|-------|
+|THT:          |          7 |         0 |     7 |
+|SMD:          |          1 |         0 |     1 |
+|Unspecified:  |          4 |         0 |     4 |
+|Total:        |         12 |         0 |    12 |
+
+Drill holes
+-----------
+
+| Count | Shape |    X Size |    Y Size | Plated | Via/Pad | Start Layer | Stop Layer |
+|-------|-------|-----------|-----------|--------|---------|-------------|------------|
+|    57 | Round | 1.0000 mm | 1.0000 mm |    PTH |     Pad |        F.Cu |       B.Cu |
+|    14 | Round | 0.3000 mm | 0.3000 mm |    PTH |     Via |        F.Cu |       B.Cu |
+|     4 | Round | 3.2000 mm | 3.2000 mm |   NPTH |     Pad |        F.Cu |       B.Cu |
+|     4 | Round | 0.8000 mm | 0.8000 mm |    PTH |     Pad |        F.Cu |       B.Cu |

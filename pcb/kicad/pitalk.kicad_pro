@@ -1,0 +1,23 @@
+{
+  "board": {
+    "design_settings": {
+      "drc_exclusions": [],
+      "rule_severities": {
+        "lib_footprint_mismatch": "ignore"
+      }
+    }
+  },
+  "boards": [],
+  "cvpcb": {},
+  "erc": {},
+  "libraries": {},
+  "meta": {
+    "filename": "pitalk.kicad_pro",
+    "version": 1
+  },
+  "net_settings": {},
+  "pcbnew": {},
+  "schematic": {},
+  "sheets": [],
+  "text_variables": {}
+}

@@ -1,0 +1,11 @@
+[project]
+name = "pitalk-pcb"
+version = "0.1.0"
+description = "PiTalk carrier PCB generator (KiCad files via kiutils)"
+requires-python = ">=3.11"
+dependencies = [
+    "kiutils>=1.4.0",
+]
+
+[tool.uv]
+package = false
