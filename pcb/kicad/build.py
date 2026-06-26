@@ -30,8 +30,9 @@ from kiutils.items.brditems import (
     Via,
 )
 from kiutils.items.gritems import GrLine
+from kiutils.items.gritems import GrText
 from kiutils.items.zones import Zone, ZonePolygon, Hatch, FillSettings
-from kiutils.items.common import Net, Position
+from kiutils.items.common import Effects, Font, Net, Position
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "pitalk.kicad_pcb")
@@ -213,6 +214,7 @@ def main():
         a, b = corners[i], corners[(i + 1) % 4]
         board.graphicItems.append(
             GrLine(start=Position(*a), end=Position(*b), layer="Edge.Cuts", width=0.15))
+    add_pin_labels(board)
 
     # route + pour
     route(board, pads, net_num)
@@ -293,6 +295,46 @@ def report_placement(pads):
           % (min(xs), max(xs), min(ys), max(ys), BOARD_W, BOARD_H))
     if min(xs) < 1 or max(xs) > BOARD_W - 1 or min(ys) < 1 or max(ys) > BOARD_H - 1:
         print("  WARNING: pads near/over board edge")
+
+
+def add_pin_labels(board):
+    """Add assembly-facing pin names to the connector silkscreen."""
+
+    def text(label, x, y, angle=0, size=0.8):
+        board.graphicItems.append(GrText(
+            text=label,
+            position=Position(x, y, angle),
+            layer="F.SilkS",
+            effects=Effects(font=Font(width=size, height=size, thickness=0.12)),
+            tstamp=str(uuid.uuid4()),
+        ))
+
+    # Microphone headers: labels sit to the right of each pin, away from board edge.
+    for y, label in ((24.765, "SD"), (27.305, "3V3"), (29.845, "GND")):
+        text(label, 10.9, y + 0.25)
+    for y, label in ((34.925, "GND"), (37.465, "LRC"), (40.005, "BCLK")):
+        text(label, 10.9, y + 0.25)
+
+    # Button/LED header: the connector is horizontal, so vertical labels fit below it.
+    for x, label in ((13.97, "SW"), (16.51, "GND"), (19.05, "LED"), (21.59, "GND")):
+        text(label, x, 55.0, angle=90)
+
+    # Amplifier socket: labels sit to the left of the socket to avoid the board edge.
+    for y, label in (
+        (24.13, "LRC"),
+        (26.67, "BCLK"),
+        (29.21, "DIN"),
+        (31.75, "NC"),
+        (34.29, "NC"),
+        (36.83, "GND"),
+        (39.37, "5V"),
+    ):
+        text(label, 61.5, y + 0.25)
+
+    # Pi header orientation and high-risk power/I2S endpoints.
+    text("PIN1", 7.0, 8.0)
+    text("1=3V3  2=5V", 18.0, 6.2)
+    text("39=GND 40=DIN", 59.0, 15.0)
 
 
 # ----------------------------------------------------------------------------
